@@ -33,4 +33,59 @@
         
         .archive-link { color: #00ff00; text-decoration: none; border-bottom: 1px solid transparent; }
         .archive-link:hover { border-bottom: 1px solid #00ff00; }
-        .red-
+        .red-link { color: #ff0000 !important; }
+    </style>
+    <script>
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        function checkAccess() {
+            let k = prompt("ENTREZ LA CLÉ D'ACCÈS :");
+            if (btoa(k) === "VklHSUUyMDI2") { 
+                document.getElementById('locked-content').style.display = 'block';
+                document.getElementById('main-btn').style.display = 'none';
+                alert("ACCÈS ACCORDÉ - BIENVENUE DANS LE NOYAU");
+            } else {
+                alert("CLÉ INVALIDE");
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>VIGIPROTON</h1>
+        <div class="status">SIGNAL : <span class="blink">SÉCURISÉ</span></div>
+        
+        <button id="main-btn" class="btn" onclick="checkAccess()">DÉCRYPTER LES DONNÉES</button>
+
+        <div id="locked-content">
+            <div class="box">
+                <p>> PROTOCOLE D'INFILTRATION (V0.1)</p>
+                <ul>
+                    <li>Brave & VPN : Navigation obligatoire.</li>
+                    <li>Signal : Communications chiffrées uniquement.</li>
+                    <li>Anonymat : Ne jamais lier votre identité réelle.</li>
+                </ul>
+            </div>
+
+            <div class="box">
+                <p>> ARCHIVES LOGICIELLES</p>
+                <ul>
+                    <li><a href="https://brave.com/" target="_blank" class="archive-link">Navigateur Brave</a></li>
+                    <li><a href="https://proton.me/mail" target="_blank" class="archive-link">ProtonMail</a></li>
+                </ul>
+            </div>
+
+            <div class="box box-red">
+                <p>[ ÉQUIPEMENT DE TERRAIN ]</p>
+                <ul>
+                    <li><a href="#" class="archive-link red-link">Pochette Faraday (Anti-Signal)</a></li>
+                    <li><a href="#" class="archive-link red-link">Clé Sécurité Physique U2F</a></li>
+                    <li><a href="#" class="archive-link red-link">Kit Protection Optique</a></li>
+                </ul>
+                <p style="font-size: 0.5rem; color: #444; margin-top: 10px; font-weight: normal;">STATUT : EN ATTENTE D'AFFILIATION...</p>
+            </div>
+            
+            <a href="https://vigiex.substack.com" target="_blank" class="btn btn-substack">ACCÉDER AUX RAPPORTS</a>
+        </div>
+    </div>
+</body>
+</html>
