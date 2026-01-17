@@ -7,38 +7,44 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     
-    <title>VIGIPROTON | RÉSEAU SÉCURISÉ</title>
+    <title>VIGIPROTON | SYSTÈME DÉPLOYÉ</title>
     <style>
-        body { background-color: #050505; color: #e0e0e0; font-family: 'Courier New', monospace; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; text-align: center; user-select: none; }
-        .container { border: 1px solid #333; padding: 30px; background: #0a0a0a; max-width: 400px; box-shadow: 0 0 25px rgba(0,255,0,0.07); }
-        h1 { letter-spacing: 7px; margin-bottom: 5px; color: #fff; }
-        .status { color: #00ff00; font-size: 0.7rem; margin: 15px 0; letter-spacing: 2px; }
+        body { background-color: #050505; color: #e0e0e0; font-family: 'Courier New', monospace; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; text-align: center; user-select: none; }
+        .container { border: 1px solid #333; padding: 30px; background: #0a0a0a; max-width: 400px; box-shadow: 0 0 30px rgba(0,255,0,0.08); margin: 20px; }
+        h1 { letter-spacing: 7px; margin-bottom: 5px; color: #fff; font-size: 1.5rem; }
+        .status { color: #00ff00; font-size: 0.7rem; margin: 15px 0; letter-spacing: 2px; font-weight: bold; }
         .blink { animation: blinker 1.2s linear infinite; }
         @keyframes blinker { 50% { opacity: 0; } }
         
         .btn { display: inline-block; margin-top: 20px; padding: 12px 24px; border: 1px solid #00ff00; color: #00ff00; text-decoration: none; font-size: 0.8rem; cursor: pointer; background: transparent; transition: 0.3s; font-weight: bold; text-transform: uppercase; }
         .btn:hover { background: #00ff00; color: #000; }
-        .btn-substack { background: #fff !important; color: #000 !important; border: none !important; margin-top: 15px; }
+        .btn-substack { background: #fff !important; color: #000 !important; border: none !important; width: 100%; box-sizing: border-box; }
         
         #locked-content { display: none; margin-top: 20px; border-top: 1px solid #222; padding-top: 20px; }
-        .unit-list { margin: 20px 0; padding: 15px; border: 1px solid #1a1a1a; background: #080808; text-align: left; }
-        .unit-list p { font-size: 0.6rem; color: #00ff00; margin: 0 0 8px 0; font-weight: bold; }
-        .unit-list ul { list-style: none; padding: 0; margin: 0; font-size: 0.65rem; color: #666; }
-        .unit-list li { margin-bottom: 4px; border-bottom: 1px solid #111; padding-bottom: 2px; }
+        
+        /* STYLE DU GUIDE TACTIQUE */
+        .guide-box { text-align: left; background: #0f0f0f; padding: 15px; border-left: 3px solid #00ff00; margin: 15px 0; border-right: 1px solid #1a1a1a; border-bottom: 1px solid #1a1a1a; }
+        .guide-box p { font-size: 0.7rem; color: #00ff00; margin: 0 0 10px 0; font-weight: bold; text-transform: uppercase; }
+        .guide-box ul { font-size: 0.65rem; color: #bbb; line-height: 1.6; padding-left: 15px; margin: 0; }
+        
+        /* STYLE LISTE UNITÉS */
+        .unit-list { margin: 20px 0; padding: 12px; border: 1px solid #1a1a1a; background: #070707; text-align: left; }
+        .unit-list span { font-size: 0.6rem; color: #444; display: block; margin-bottom: 5px; font-weight: bold; }
+        .unit-list ul { list-style: none; padding: 0; margin: 0; font-size: 0.6rem; color: #555; }
+        .unit-list li { margin-bottom: 3px; font-family: monospace; }
     </style>
     <script>
-        // Neutralisation du clic droit
         document.addEventListener('contextmenu', event => event.preventDefault());
         
         function checkAccess() {
-            let k = prompt("CLEF D'ACCÈS REQUISE :");
-            // Code : VIGIE2026
+            let k = prompt("ENTREZ LA CLÉ D'ACCÈS :");
+            // La clé est VIGIE2026
             if (btoa(k) === "VklHSUUyMDI2") { 
                 document.getElementById('locked-content').style.display = 'block';
                 document.getElementById('main-btn').style.display = 'none';
-                alert("SYSTÈME DÉVERROUILLÉ - ACCÈS AU NOYAU AUTORISÉ");
+                alert("IDENTITÉ VÉRIFIÉE - ACCÈS ACCORDÉ");
             } else {
-                alert("ÉCHEC D'AUTHENTIFICATION - TENTATIVE LOGUÉE");
+                alert("CLÉ INVALIDE - SYSTÈME VERROUILLÉ");
             }
         }
     </script>
@@ -46,31 +52,37 @@
 <body>
     <div class="container">
         <h1>VIGIPROTON</h1>
-        <div class="status">STRUCTURE : <span class="blink">OPÉRATIONNELLE</span></div>
-        <p style="font-size: 0.7rem; color: #444; margin-bottom: 20px;">ID RÉSEAU : #VX-01</p>
+        <div class="status">SIGNAL : <span class="blink">SÉCURISÉ</span></div>
+        <p style="font-size: 0.65rem; color: #333; margin-bottom: 20px; font-style: italic;">"Nihil Verum, Omnia Licita"</p>
         
-        <button id="main-btn" class="btn" onclick="checkAccess()">ACCÉDER AUX ARCHIVES</button>
+        <button id="main-btn" class="btn" onclick="checkAccess()">DÉCRYPTER LES DONNÉES</button>
 
         <div id="locked-content">
-            <p style="color: #00ff00; font-weight: bold; font-size: 0.9rem;">[ ACCÈS AUTORISÉ ]</p>
-            <p style="font-size: 0.75rem; line-height: 1.5; color: #bbb; margin: 15px 0;">
-                "Le silence est une démission. La vigilance est une arme."<br>
-                Rejoignez la ligne de front pour recevoir les protocoles.
-            </p>
+            <p style="color: #00ff00; font-weight: bold; font-size: 0.85rem;">[ UNITÉ VIGIE-X RECONNUE ]</p>
+            
+            <div class="guide-box">
+                <p>> PROTOCOLE DE DÉPART (V0.1)</p>
+                <ul>
+                    <li><b>OUTILS :</b> Privilégiez Brave & VPN pour tout accès.</li>
+                    <li><b>COMMUNICATION :</b> Utilisez uniquement des messageries chiffrées.</li>
+                    <li><b>VIGILANCE :</b> Ne partagez jamais votre localisation réelle.</li>
+                </ul>
+            </div>
 
             <div class="unit-list">
-                <p>[ UNITÉS ACTIVÉES ]</p>
+                <span>[ RÉSEAU ACTIF ]</span>
                 <ul>
-                    <li>> VX-USER-001 [STATUT: ACTIF]</li>
-                    <li>> VX-USER-002 [STATUT: ACTIF]</li>
-                    <li>> VX-ALPHA-09 [STATUT: VEILLE]</li>
+                    <li>> UNIT_001 : OPÉRATIONNEL</li>
+                    <li>> UNIT_002 : OPÉRATIONNEL</li>
+                    <li>> ALPHA_09 : STANDBY</li>
                 </ul>
             </div>
             
-            <a href="https://vigiex.substack.com" target="_blank" class="btn btn-substack">S'ABONNER AU SUBSTACK</a>
+            <a href="https://vigiex.substack.com" target="_blank" class="btn btn-substack">ACCÉDER AUX RAPPORTS (SUBSTACK)</a>
             
-            <br><br>
-            <a href="mailto:vigie-x@proton.me" style="color: #333; font-size: 0.6rem; text-decoration: none; letter-spacing: 1px;">[ CONTACTER LE NOYAU ]</a>
+            <div style="margin-top: 25px;">
+                <a href="mailto:vigie-x@proton.me" style="color: #222; font-size: 0.55rem; text-decoration: none; letter-spacing: 2px;">CONTACT@VIGIPROTON</a>
+            </div>
         </div>
     </div>
 </body>
