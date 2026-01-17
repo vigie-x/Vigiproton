@@ -1,11 +1,10 @@
-   <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIGIPROTON | ARCHITECT</title>
+    <title>VIGIPROTON | SYSTEM</title>
     <style>
-        /* DESIGN ROOT - STYLE TERMINAL */
         body {
             background-color: #000;
             color: #00FF41;
@@ -18,25 +17,27 @@
             overflow: hidden;
         }
 
-        .bunker-container {
+        /* ÉCRAN DE VERROUILLAGE */
+        #login-screen {
             border: 1px solid #00FF41;
             padding: 40px;
-            background: rgba(0, 5, 0, 0.9);
-            box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
             text-align: center;
             max-width: 400px;
             width: 90%;
             position: relative;
+            background: rgba(0, 10, 0, 0.9);
         }
 
-        h1 {
-            font-size: 1.5rem;
-            letter-spacing: 5px;
-            margin-bottom: 30px;
-            text-shadow: 0 0 10px #00FF41;
+        /* CONTENU CACHÉ (L'ARMURERIE) */
+        #main-content {
+            display: none; /* Caché par défaut */
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            overflow-y: auto;
+            text-align: center;
         }
 
-        /* NOTIFICATION DE SÉCURITÉ */
         .notification {
             background: #002200;
             border-left: 5px solid #00FF41;
@@ -44,11 +45,6 @@
             margin-bottom: 25px;
             font-size: 0.8rem;
             text-align: left;
-            animation: blink 2s infinite;
-        }
-
-        @keyframes blink {
-            50% { opacity: 0.7; }
         }
 
         input {
@@ -73,21 +69,8 @@
             font-weight: bold;
             cursor: pointer;
             text-transform: uppercase;
-            letter-spacing: 2px;
         }
 
-        button:hover {
-            background: #008F11;
-        }
-
-        #error-msg {
-            color: #ff0000;
-            margin-top: 15px;
-            font-size: 0.8rem;
-            display: none;
-        }
-
-        /* EFFET DE SCAN */
         .scan-line {
             width: 100%;
             height: 2px;
@@ -98,47 +81,58 @@
             animation: scanning 4s infinite linear;
         }
 
-        @keyframes scanning {
-            0% { top: 0; }
-            100% { top: 100%; }
+        @keyframes scanning { 0% { top: 0; } 100% { top: 100%; } }
+
+        .item-card {
+            border: 1px solid #00FF41;
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 500px;
         }
     </style>
 </head>
 <body>
 
-    <div class="bunker-container">
+    <div id="login-screen">
         <div class="scan-line"></div>
-        
         <h1>VIGIPROTON</h1>
-
         <div class="notification">
-            [!] SYSTÈME EN ATTENTE<br>
-            [!] ACCÈS RESTREINT : NIVEAU ROOT REQUIS<br>
-            [!] ANALYSE PSYCHOLOGIQUE ACTIVÉE
+            [!] ACCÈS RESTREINT<br>
+            [!] NIVEAU : ARCHITECTE
+        </div>
+        <input type="password" id="accessCode" placeholder="CODE">
+        <button onclick="checkAccess()">Exécuter</button>
+    </div>
+
+    <div id="main-content">
+        <h1>TABLEAU DE BORD</h1>
+        <p>Bienvenue dans l'ombre. Voici vos outils :</p>
+        
+        <div class="item-card">
+            <h3>[ SCANNER D'URGENCE ]</h3>
+            <p>Statut : Prêt à être déployé.</p>
+            <button>LANCER L'ANALYSE</button>
         </div>
 
-        <input type="password" id="accessCode" placeholder="ENTRER CODE" maxlength="4">
-        <button onclick="checkAccess()">Exécuter</button>
-        
-        <p id="error-msg">CODE ERRONÉ. ACCÈS REFUSÉ.</p>
+        <div class="item-card">
+            <h3>[ L'ARMURERIE ]</h3>
+            <p>Produits de protection physique.</p>
+            <button onclick="window.location.href='https://ton-lien-affiliation.com'">ACCÉDER</button>
+        </div>
     </div>
 
     <script>
         function checkAccess() {
             const code = document.getElementById('accessCode').value;
-            const error = document.getElementById('error-msg');
-            
             if (code === '1111') {
-                // REDIRECTION VERS L'ARMURERIE (Page à créer demain)
-                alert('ACCÈS ACCORDÉ. BIENVENUE ARCHITECTE.');
-                window.location.href = "armurerie.html"; 
+                document.getElementById('login-screen').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+                document.body.style.overflow = 'auto'; // Permet de scroller
             } else {
-                error.style.display = 'block';
-                setTimeout(() => { error.style.display = 'none'; }, 2000);
+                alert('CODE ERRONÉ');
             }
         }
     </script>
 
 </body>
 </html>
-        
