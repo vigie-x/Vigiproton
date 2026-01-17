@@ -22,9 +22,11 @@
         .box-red { border-left-color: #ff0000 !important; }
         .box-red p { color: #ff0000 !important; }
         ul { padding-left: 10px; margin: 0; list-style: none; color: #bbb; }
-        li { margin-bottom: 5px; line-height: 1.3; }
+        li { margin-bottom: 8px; line-height: 1.4; }
         li::before { content: "> "; color: inherit; }
-        a { color: inherit; text-decoration: none; }
+        
+        .archive-link { color: #00ff00; text-decoration: none; font-weight: bold; }
+        .red-link { color: #ff0000 !important; text-decoration: underline; }
     </style>
     <script>
         function checkAccess() {
@@ -56,19 +58,19 @@
             <div class="box">
                 <p>> ARCHIVES LOGICIELLES</p>
                 <ul>
-                    <li><a href="https://brave.com/" target="_blank">> Navigateur Brave</a></li>
-                    <li><a href="https://proton.me/mail" target="_blank">> ProtonMail</a></li>
+                    <li><a href="https://brave.com/" target="_blank" class="archive-link">Navigateur Brave</a></li>
+                    <li><a href="https://proton.me/mail" target="_blank" class="archive-link">ProtonMail</a></li>
                 </ul>
             </div>
 
             <div class="box box-red">
                 <p>[ ÉQUIPEMENT DE TERRAIN ]</p>
                 <ul>
-                    <li>Pochette Faraday (Anti-Signal)</li>
-                    <li>Clé Sécurité Physique U2F</li>
-                    <li>Kit Protection Optique</li>
+                    <li><a href="https://amzn.to/4bD8LLO" target="_blank" class="archive-link red-link">Pochette Faraday (Anti-Signal)</a></li>
+                    <li><a href="#" class="archive-link red-link">Clé Sécurité Physique U2F</a></li>
+                    <li><a href="#" class="archive-link red-link">Kit Protection Optique</a></li>
                 </ul>
-                <div style="font-size: 0.5rem; color: #444; margin-top: 10px;">STATUT : EN ATTENTE D'AFFILIATION...</div>
+                <div style="font-size: 0.5rem; color: #ff0000; margin-top: 10px; font-weight: bold;">STATUT : STOCKS DISPONIBLES (UNITÉS LIMITÉES)</div>
             </div>
             
             <a href="https://vigiex.substack.com" target="_blank" class="btn btn-substack">ACCÉDER AUX RAPPORTS</a>
