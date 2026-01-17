@@ -5,29 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VIGIPROTON | ACCÈS RESTREINT</title>
     <style>
-        body { background-color: #050505; color: #e0e0e0; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; }
-        .container { text-align: center; border: 1px solid #333; padding: 40px; background: #0a0a0a; }
-        h1 { font-size: 1.5rem; letter-spacing: 5px; color: #fff; text-transform: uppercase; }
-        .status { color: #00ff00; font-size: 0.8rem; margin-top: 20px; }
+        body { background-color: #050505; color: #e0e0e0; font-family: 'Courier New', monospace; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; text-align: center; }
+        .container { border: 1px solid #333; padding: 30px; background: #0a0a0a; max-width: 400px; }
+        h1 { font-size: 1.5rem; letter-spacing: 5px; color: #fff; }
+        .status { color: #00ff00; font-size: 0.7rem; margin: 15px 0; }
         .blink { animation: blinker 1.5s linear infinite; }
         @keyframes blinker { 50% { opacity: 0; } }
+        .btn { display: inline-block; margin-top: 20px; padding: 10px 20px; border: 1px solid #00ff00; color: #00ff00; text-decoration: none; font-size: 0.8rem; cursor: pointer; background: transparent; }
+        #locked-content { display: none; margin-top: 20px; border-top: 1px solid #333; padding-top: 20px; }
     </style>
 </head>
 <body>
     <div class="container">
-    <h1>VIGIPROTON</h1>
-    <p style="color: #888; font-style: italic; margin-bottom: 20px;">
-        "Le silence est une démission. La vigilance est une arme."
-    </p>
-    <p style="font-size: 0.85rem; line-height: 1.6; max-width: 300px; margin: 0 auto 30px auto;">
-        Ici commence la coordination. Pas de chefs, seulement des volontés. 
-        Contactez le noyau pour recevoir vos premières instructions de maillage.
-    </p>
-    <div class="status">STRUCTURE : <span class="blink">OPÉRATIONNELLE</span></div>
-    <br>
-    <a href="mailto:vigie-x@proton.me" class="btn" style="border: 1px solid #00ff00; color: #00ff00;">CONTACTER LE NOYAU</a>
-</div>
+        <h1>VIGIPROTON</h1>
+        <div class="status">STRUCTURE : <span class="blink">OPÉRATIONNELLE</span></div>
+        
+        <p style="font-size: 0.8rem;">"Le silence est une démission."</p>
+        
+        <button class="btn" onclick="checkAccess()">ACCÉDER AUX ARCHIVES</button>
 
+        <div id="locked-content">
+            <p style="color: #00ff00;">ACCÈS AUTORISÉ</p>
+            <p>Ici seront tes liens Substack et tes documents de ralliement.</p>
+            <a href="mailto:vigie-x@proton.me" style="color: #fff; font-size: 0.7rem;">[ CONTACTER LE NOYAU ]</a>
+        </div>
+    </div>
+
+    <script>
+        function checkAccess() {
+            let code = prompt("ENTREZ LE CODE D'ACCÈS :");
+            if (code === "VIGIE2026") {
+                document.getElementById('locked-content').style.display = 'block';
+                alert("SYSTÈME DÉVERROUILLÉ");
+            } else {
+                alert("ACCÈS REFUSÉ");
+            }
+        }
+    </script>
 </body>
-
 </html>
