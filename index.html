@@ -3,42 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
     <title>VIGIPROTON | SECURED</title>
     <style>
         body { background-color: #050505; color: #e0e0e0; font-family: 'Courier New', monospace; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; text-align: center; user-select: none; }
         .container { border: 1px solid #333; padding: 30px; background: #0a0a0a; max-width: 400px; box-shadow: 0 0 20px rgba(0,255,0,0.05); }
+        h1 { letter-spacing: 7px; margin-bottom: 5px; }
         .status { color: #00ff00; font-size: 0.7rem; margin: 15px 0; }
-        .btn { display: inline-block; margin-top: 20px; padding: 10px 20px; border: 1px solid #00ff00; color: #00ff00; text-decoration: none; font-size: 0.8rem; cursor: pointer; background: transparent; transition: 0.3s; }
+        .blink { animation: blinker 1s linear infinite; }
+        @keyframes blinker { 50% { opacity: 0; } }
+        .btn { display: inline-block; margin-top: 20px; padding: 10px 20px; border: 1px solid #00ff00; color: #00ff00; text-decoration: none; font-size: 0.8rem; cursor: pointer; background: transparent; transition: 0.3s; font-weight: bold; }
         .btn:hover { background: #00ff00; color: #000; }
+        .btn-substack { background: #fff !important; color: #000 !important; border: none !important; }
         #locked-content { display: none; margin-top: 20px; border-top: 1px solid #333; padding-top: 20px; }
     </style>
     <script>
-        // Bloque le clic droit pour éviter l'inspection facile
+        // Bloque le clic droit
         document.addEventListener('contextmenu', event => event.preventDefault());
         
         function checkAccess() {
             let k = prompt("CLEF D'ACCÈS REQUISE :");
-            if (btoa(k) === "VklHSUUyMDI2") { // Code encodé en Base64
+            // Le code est VIGIE2026
+            if (btoa(k) === "VklHSUUyMDI2") { 
                 document.getElementById('locked-content').style.display = 'block';
-                document.querySelector('.btn').style.display = 'none';
+                document.getElementById('main-btn').style.display = 'none';
+                alert("SYSTÈME DÉVERROUILLÉ - BIENVENUE");
             } else {
-                alert("ÉCHEC D'AUTHENTIFICATION - SIGNALEMENT ENVOYÉ");
+                alert("ÉCHEC D'AUTHENTIFICATION");
             }
         }
     </script>
 </head>
 <body>
     <div class="container">
-        <h1 style="letter-spacing: 7px;">VIGIPROTON</h1>
-        <div class="status">PROTOCOLE : <span style="animation: blinker 1s linear infinite;">ACTIF</span></div>
-        <p style="font-size: 0.7rem; color: #555;">ID : VX-STRAT-01</p>
+        <h1>VIGIPROTON</h1>
+        <div class="status">PROTOCOLE : <span class="blink">ACTIF</span></div>
+        <p style="font-size: 0.7rem; color: #555; margin-bottom: 20px;">"Le silence est une démission."</p>
         
-        <button class="btn" onclick="checkAccess()">DÉVERROUILLER</button>
+        <button id="main-btn" class="btn" onclick="checkAccess()">DÉVERROUILLER LES ARCHIVES</button>
 
         <div id="locked-content">
-            <p style="color: #00ff00;">[ ACCÈS AUTORISÉ ]</p>
-            <p style="font-size: 0.8rem;">Le réseau est en phase de déploiement.</p>
-            <a href="mailto:vigie-x@proton.me" style="color: #fff; font-size: 0.7rem;">[ CANAL SÉCURISÉ ]</a>
+            <p style="color: #00ff00; font-weight: bold;">[ ACCÈS AUTORISÉ ]</p>
+            <p style="font-size: 0.8rem; line-height: 1.4;">Le réseau est en phase de déploiement. Rejoignez le signal sur Substack.</p>
+            
+            <a href="https://vigiex.substack.com" target="_blank" class="btn btn-substack">S'ABONNER AU SUBSTACK</a>
+            
+            <br><br>
+            <a href="mailto:vigie-x@proton.me" style="color: #444; font-size: 0.6rem; text-decoration: none;">[ CONTACTER LE NOYAU ]</a>
         </div>
     </div>
 </body>
