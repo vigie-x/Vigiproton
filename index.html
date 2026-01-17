@@ -26,15 +26,15 @@
             width: 90%;
             position: relative;
             background: rgba(0, 10, 0, 0.9);
+            display: block; /* Visible au départ */
         }
 
-        /* CONTENU CACHÉ (L'ARMURERIE) */
+        /* CONTENU CACHÉ */
         #main-content {
-            display: none; /* Caché par défaut */
+            display: none; /* Caché totalement au départ */
             width: 100%;
-            height: 100%;
+            max-width: 800px;
             padding: 20px;
-            overflow-y: auto;
             text-align: center;
         }
 
@@ -71,24 +71,22 @@
             text-transform: uppercase;
         }
 
+        .item-card {
+            border: 1px solid #00FF41;
+            margin: 20px auto;
+            padding: 20px;
+            background: rgba(0, 20, 0, 0.5);
+        }
+
         .scan-line {
             width: 100%;
             height: 2px;
             background: rgba(0, 255, 65, 0.3);
             position: absolute;
-            top: 0;
-            left: 0;
+            top: 0; left: 0;
             animation: scanning 4s infinite linear;
         }
-
         @keyframes scanning { 0% { top: 0; } 100% { top: 100%; } }
-
-        .item-card {
-            border: 1px solid #00FF41;
-            margin: 20px auto;
-            padding: 20px;
-            max-width: 500px;
-        }
     </style>
 </head>
 <body>
@@ -97,39 +95,42 @@
         <div class="scan-line"></div>
         <h1>VIGIPROTON</h1>
         <div class="notification">
-            [!] ACCÈS RESTREINT<br>
-            [!] NIVEAU : ARCHITECTE
+            [!] SYSTÈME VERROUILLÉ<br>
+            [!] IDENTIFICATION REQUISE
         </div>
-        <input type="password" id="accessCode" placeholder="CODE">
-        <button onclick="checkAccess()">Exécuter</button>
+        <input type="password" id="accessCode" placeholder="____">
+        <button onclick="unlock()">DÉVERROUILLER</button>
     </div>
 
     <div id="main-content">
-        <h1>TABLEAU DE BORD</h1>
-        <p>Bienvenue dans l'ombre. Voici vos outils :</p>
+        <h1>ACCESS GRANTED</h1>
+        <div class="notification">BIENVENUE DANS L'ARMURERIE, ARCHITECTE.</div>
         
         <div class="item-card">
-            <h3>[ SCANNER D'URGENCE ]</h3>
-            <p>Statut : Prêt à être déployé.</p>
-            <button>LANCER L'ANALYSE</button>
+            <h3>SCANNER DE RÉSEAU v1.0</h3>
+            <p>Analyse de vulnérabilité en cours...</p>
+            <button>LANCER SCAN</button>
         </div>
 
         <div class="item-card">
-            <h3>[ L'ARMURERIE ]</h3>
-            <p>Produits de protection physique.</p>
-            <button onclick="window.location.href='https://ton-lien-affiliation.com'">ACCÉDER</button>
+            <h3>PROTECTION PHYSIQUE</h3>
+            <p>Accès aux équipements Faraday et anti-traçage.</p>
+            <button>VOIR LES ÉQUIPEMENTS</button>
         </div>
     </div>
 
     <script>
-        function checkAccess() {
+        function unlock() {
             const code = document.getElementById('accessCode').value;
             if (code === '1111') {
+                // On cache le login et on affiche le contenu
                 document.getElementById('login-screen').style.display = 'none';
                 document.getElementById('main-content').style.display = 'block';
-                document.body.style.overflow = 'auto'; // Permet de scroller
+                // On change le mode d'affichage du body pour permettre de voir le contenu
+                document.body.style.display = 'block';
+                document.body.style.overflowY = 'auto';
             } else {
-                alert('CODE ERRONÉ');
+                alert('ACCÈS REFUSÉ : CODE INVALIDE');
             }
         }
     </script>
