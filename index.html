@@ -3,49 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
     <title>VIGIPROTON | SYSTÈME DÉPLOYÉ</title>
     <style>
-        body { background-color: #050505; color: #e0e0e0; font-family: 'Courier New', monospace; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; text-align: center; user-select: none; }
-        .container { border: 1px solid #333; padding: 30px; background: #0a0a0a; max-width: 400px; box-shadow: 0 0 30px rgba(0,255,0,0.08); margin: 20px; }
-        h1 { letter-spacing: 7px; margin-bottom: 5px; color: #fff; font-size: 1.5rem; }
-        .status { color: #00ff00; font-size: 0.7rem; margin: 15px 0; letter-spacing: 2px; font-weight: bold; }
+        body { background-color: #050505; color: #e0e0e0; font-family: 'Courier New', monospace; display: flex; flex-direction: column; align-items: center; min-height: 100vh; margin: 0; padding: 20px; text-align: center; user-select: none; box-sizing: border-box; }
+        .container { border: 1px solid #333; padding: 20px; background: #0a0a0a; width: 100%; max-width: 380px; box-shadow: 0 0 30px rgba(0,255,0,0.08); margin-top: 20px; }
+        h1 { letter-spacing: 5px; margin-bottom: 5px; color: #fff; font-size: 1.2rem; }
+        .status { color: #00ff00; font-size: 0.7rem; margin: 10px 0; letter-spacing: 2px; font-weight: bold; }
         .blink { animation: blinker 1.2s linear infinite; }
         @keyframes blinker { 50% { opacity: 0; } }
         
-        .btn { display: inline-block; margin-top: 20px; padding: 12px 24px; border: 1px solid #00ff00; color: #00ff00; text-decoration: none; font-size: 0.8rem; cursor: pointer; background: transparent; transition: 0.3s; font-weight: bold; text-transform: uppercase; }
+        .btn { display: block; margin: 20px auto; padding: 15px; border: 1px solid #00ff00; color: #00ff00; text-decoration: none; font-size: 0.8rem; cursor: pointer; background: transparent; transition: 0.3s; font-weight: bold; text-transform: uppercase; width: 90%; }
         .btn:hover { background: #00ff00; color: #000; }
-        .btn-substack { background: #fff !important; color: #000 !important; border: none !important; width: 100%; box-sizing: border-box; }
+        .btn-substack { background: #fff !important; color: #000 !important; border: none !important; margin-top: 30px; position: relative; z-index: 999; }
         
-        #locked-content { display: none; margin-top: 20px; border-top: 1px solid #222; padding-top: 20px; }
-        
-        .box { text-align: left; background: #0f0f0f; padding: 15px; border-left: 3px solid #00ff00; margin: 15px 0; border-right: 1px solid #1a1a1a; border-bottom: 1px solid #1a1a1a; }
-        .box p { font-size: 0.7rem; color: #00ff00; margin: 0 0 10px 0; font-weight: bold; text-transform: uppercase; }
-        
-        /* Style spécifique pour la section Équipement (Rouge) */
-        .box-red { border-left: 3px solid #ff0000 !important; }
+        #locked-content { display: none; margin-top: 20px; width: 100%; }
+        .box { text-align: left; background: #0f0f0f; padding: 12px; border-left: 3px solid #00ff00; margin: 15px 0; font-size: 0.65rem; }
+        .box p { color: #00ff00; margin: 0 0 8px 0; font-weight: bold; text-transform: uppercase; font-size: 0.7rem; }
+        .box-red { border-left-color: #ff0000 !important; }
         .box-red p { color: #ff0000 !important; }
-
-        ul { font-size: 0.65rem; color: #bbb; line-height: 1.6; padding-left: 15px; margin: 0; list-style: none; }
-        li::before { content: "> "; color: inherit; opacity: 0.5; }
-        
-        .archive-link { color: #00ff00; text-decoration: none; border-bottom: 1px solid transparent; }
-        .archive-link:hover { border-bottom: 1px solid #00ff00; }
-        .red-link { color: #ff0000 !important; }
+        ul { padding-left: 10px; margin: 0; list-style: none; color: #bbb; }
+        li { margin-bottom: 5px; line-height: 1.3; }
+        li::before { content: "> "; color: inherit; }
+        a { color: inherit; text-decoration: none; }
     </style>
     <script>
-        document.addEventListener('contextmenu', event => event.preventDefault());
         function checkAccess() {
             let k = prompt("ENTREZ LA CLÉ D'ACCÈS :");
-            if (btoa(k) === "VklHSUUyMDI2") { 
+            if (k && k.toUpperCase() === "VIGIE2026") { 
                 document.getElementById('locked-content').style.display = 'block';
                 document.getElementById('main-btn').style.display = 'none';
-                alert("ACCÈS ACCORDÉ - BIENVENUE DANS LE NOYAU");
-            } else {
-                alert("CLÉ INVALIDE");
-            }
+            } else if (k) { alert("CLÉ INVALIDE"); }
         }
     </script>
 </head>
@@ -58,30 +45,30 @@
 
         <div id="locked-content">
             <div class="box">
-                <p>> PROTOCOLE D'INFILTRATION (V0.1)</p>
+                <p>> PROTOCOLE D'INFILTRATION</p>
                 <ul>
-                    <li>Brave & VPN : Navigation obligatoire.</li>
-                    <li>Signal : Communications chiffrées uniquement.</li>
-                    <li>Anonymat : Ne jamais lier votre identité réelle.</li>
+                    <li>Brave & VPN obligatoires.</li>
+                    <li>Signal pour les comms.</li>
+                    <li>Anonymat total requis.</li>
                 </ul>
             </div>
 
             <div class="box">
                 <p>> ARCHIVES LOGICIELLES</p>
                 <ul>
-                    <li><a href="https://brave.com/" target="_blank" class="archive-link">Navigateur Brave</a></li>
-                    <li><a href="https://proton.me/mail" target="_blank" class="archive-link">ProtonMail</a></li>
+                    <li><a href="https://brave.com/" target="_blank">> Navigateur Brave</a></li>
+                    <li><a href="https://proton.me/mail" target="_blank">> ProtonMail</a></li>
                 </ul>
             </div>
 
             <div class="box box-red">
                 <p>[ ÉQUIPEMENT DE TERRAIN ]</p>
                 <ul>
-                    <li><a href="#" class="archive-link red-link">Pochette Faraday (Anti-Signal)</a></li>
-                    <li><a href="#" class="archive-link red-link">Clé Sécurité Physique U2F</a></li>
-                    <li><a href="#" class="archive-link red-link">Kit Protection Optique</a></li>
+                    <li>Pochette Faraday (Anti-Signal)</li>
+                    <li>Clé Sécurité Physique U2F</li>
+                    <li>Kit Protection Optique</li>
                 </ul>
-                <p style="font-size: 0.5rem; color: #444; margin-top: 10px; font-weight: normal;">STATUT : EN ATTENTE D'AFFILIATION...</p>
+                <div style="font-size: 0.5rem; color: #444; margin-top: 10px;">STATUT : EN ATTENTE D'AFFILIATION...</div>
             </div>
             
             <a href="https://vigiex.substack.com" target="_blank" class="btn btn-substack">ACCÉDER AUX RAPPORTS</a>
