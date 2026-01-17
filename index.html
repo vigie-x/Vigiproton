@@ -2,17 +2,21 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon.png">
     <title>VIGIPROTON | SYSTÈME OPÉRATIONNEL</title>
     <style>
-        body { background-color: #050505; color: #e0e0e0; font-family: 'Courier New', monospace; display: flex; flex-direction: column; align-items: center; min-height: 100vh; margin: 0; padding: 20px; text-align: center; user-select: none; box-sizing: border-box; }
+        body { background-color: #050505; color: #e0e0e0; font-family: 'Courier New', monospace; display: flex; flex-direction: column; align-items: center; min-height: 100vh; margin: 0; padding: 20px; text-align: center; user-select: none; box-sizing: border-box; overflow-x: hidden; }
         .container { border: 1px solid #333; padding: 20px; background: #0a0a0a; width: 100%; max-width: 380px; box-shadow: 0 0 30px rgba(0,255,0,0.1); margin-top: 20px; }
         h1 { letter-spacing: 5px; margin-bottom: 5px; color: #fff; font-size: 1.2rem; }
         .status { color: #00ff00; font-size: 0.7rem; margin: 10px 0; letter-spacing: 2px; font-weight: bold; }
         .blink { animation: blinker 1.2s linear infinite; }
         @keyframes blinker { 50% { opacity: 0; } }
         
-        .btn { display: block; margin: 20px auto; padding: 15px; border: 1px solid #00ff00; color: #00ff00; text-decoration: none; font-size: 0.8rem; cursor: pointer; background: transparent; transition: 0.3s; font-weight: bold; text-transform: uppercase; width: 90%; }
+        .btn { display: block; margin: 20px auto; padding: 15px; border: 1px solid #00ff00; color: #00ff00; text-decoration: none; font-size: 0.8rem; cursor: pointer; background: transparent; transition: 0.3s; font-weight: bold; text-transform: uppercase; width: 90%; border-radius: 0; }
         .btn:hover { background: #00ff00; color: #000; }
         .btn-substack { background: #fff !important; color: #000 !important; border: none !important; margin-top: 30px; position: relative; z-index: 999; }
         
@@ -27,6 +31,9 @@
         
         .archive-link { color: #00ff00; text-decoration: none; font-weight: bold; }
         .red-link { color: #ff0000 !important; text-decoration: underline; }
+
+        /* Instructions d'installation */
+        #install-hint { font-size: 0.6rem; color: #666; margin-top: 20px; border-top: 1px dotted #333; padding-top: 10px; }
     </style>
     <script>
         function checkAccess() {
@@ -34,6 +41,7 @@
             if (k && k.toUpperCase() === "VIGIE2026") { 
                 document.getElementById('locked-content').style.display = 'block';
                 document.getElementById('main-btn').style.display = 'none';
+                document.getElementById('install-hint').style.display = 'none';
             } else if (k) { alert("CLÉ INVALIDE"); }
         }
     </script>
@@ -70,10 +78,16 @@
                     <li><a href="https://amzn.to/4qWcLvj" target="_blank" class="archive-link red-link">Clé Sécurité Physique U2F</a></li>
                     <li><a href="https://amzn.to/4qWT7iP" target="_blank" class="archive-link red-link">Kit Protection Optique</a></li>
                 </ul>
-                <div style="font-size: 0.5rem; color: #ff0000; margin-top: 10px; font-weight: bold;">STATUT : STOCKS DISPONIBLES (UNITÉS LIMITÉES)</div>
+                <div style="font-size: 0.5rem; color: #ff0000; margin-top: 10px; font-weight: bold;">STATUT : STOCKS DISPONIBLES</div>
             </div>
             
             <a href="https://vigiex.substack.com" target="_blank" class="btn btn-substack">ACCÉDER AUX RAPPORTS</a>
+        </div>
+
+        <div id="install-hint">
+            POUR INSTALLER L'INTERFACE :<br>
+            iPhone : Partager > Sur l'écran d'accueil<br>
+            Android : Menu > Installer l'application
         </div>
     </div>
 </body>
