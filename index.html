@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VIGIPROTON | HIGH-END SECURITY</title>
     <style>
+        @keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    100% { transform: translateX(0); }
+}
+
         :root {
             --accent-red: #FF3B30;
             --accent-green: #34C759;
@@ -169,17 +176,32 @@
     </div>
 
     <script>
-        const input = document.getElementById('code');
-        input.addEventListener('input', function() {
-            if (this.value === '1111') {
+    const input = document.getElementById('code');
+    const divider = document.querySelector('.red-divider');
+
+    input.addEventListener('input', function() {
+        if (this.value.length === 4) {
+            if (this.value === '0741') {
+                // ACCÈS VALIDE
                 document.getElementById('lock').style.display = 'none';
                 document.getElementById('vault').style.display = 'block';
                 document.body.style.alignItems = 'flex-start';
                 document.body.style.paddingTop = '50px';
                 window.scrollTo(0,0);
+            } else {
+                // ÉCHEC : ANIMATION DE REJET SUR LA BARRE ROUGE
+                divider.style.background = '#FFFFFF'; // La barre devient blanche un instant
+                input.style.animation = 'shake 0.3s ease';
+                setTimeout(() => {
+                    this.value = '';
+                    divider.style.background = 'var(--accent-red)';
+                    input.style.animation = '';
+                }, 400);
             }
-        });
-    </script>
+        }
+    });
+</script>
+
 </body>
 </html>
 
