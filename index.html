@@ -67,7 +67,6 @@
             background: var(--accent-red);
             width: 100%;
             margin-bottom: 25px;
-            transition: background 0.2s ease;
         }
 
         .code-font {
@@ -130,3 +129,102 @@
         }
 
         .footer-info {
+            font-size: 0.55rem;
+            color: #222;
+            margin-top: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="lock">
+        <div class="status-line" id="status-display">System Restricted</div>
+        <h1>Vigiproton</h1>
+        <input type="password" id="code" maxlength="4" placeholder="••••" inputmode="numeric" autocomplete="off">
+        <div class="red-divider" id="divider"></div>
+        <div class="instructions-box">
+            <p class="code-font">ANDROID : MENU ⋮ > AJOUTER À L'ÉCRAN D'ACCUEIL</p>
+            <p class="code-font">APPLE : ICÔNE ↑ > SUR L'ÉCRAN D'ACCUEIL</p>
+        </div>
+    </div>
+
+    <div id="vault">
+        <div style="color: var(--accent-red); font-size: 0.6rem; margin-bottom: 20px;">[ ACCESS GRANTED ]</div>
+        <h1>Armurerie Privée</h1>
+
+        <div class="card">
+            <h3>00. Key Chamber</h3>
+            <p class="code-font">Génération d'identifiants de cryptage asymétrique. Sécurisation locale des échanges.</p>
+            <div id="key-output" class="code-font" style="color: var(--accent-green); font-size: 0.7rem; min-height: 20px; margin-bottom: 20px;">[ SYSTÈME PRÊT ]</div>
+            <button onclick="runGenerator()" class="btn-luxe">Générer</button>
+        </div>
+
+        <div class="card">
+            <h3>01. Faraday Shield</h3>
+            <p class="code-font">Protection électromagnétique de grade militaire. Neutralisation de tout signal.</p>
+            <a href="https://amzn.to/4qWT7iP" target="_blank" class="btn-luxe">Acquérir</a>
+        </div>
+
+        <div class="card">
+            <h3>02. Signal Hunter</h3>
+            <p class="code-font">Analyse spectrale avancée pour la détection de dispositifs d'écoute.</p>
+            <a href="https://amzn.to/4qWcLvj" target="_blank" class="btn-luxe">Acquérir</a>
+        </div>
+
+        <div class="card">
+            <h3>03. Data Crypt</h3>
+            <p class="code-font">Sécurisation physique des transferts de données. Prévention contre l'extraction.</p>
+            <a href="https://amzn.to/4bD8LLO" target="_blank" class="btn-luxe">Acquérir</a>
+        </div>
+
+        <div class="footer-info code-font">Vigiproton | High Security Solutions</div>
+    </div>
+
+    <script>
+        const codeInput = document.getElementById('code');
+        const divider = document.getElementById('divider');
+        const status = document.getElementById('status-display');
+        const MASTER_CODE = "0741";
+
+        codeInput.addEventListener('input', function() {
+            if (this.value.length === 4) {
+                if (this.value === MASTER_CODE) {
+                    document.getElementById('lock').style.display = 'none';
+                    document.getElementById('vault').style.display = 'block';
+                    document.body.style.alignItems = 'flex-start';
+                    document.body.style.paddingTop = '50px';
+                } else {
+                    divider.style.background = '#FFFFFF';
+                    status.innerText = "ACCESS DENIED";
+                    status.style.color = "#FFFFFF";
+                    codeInput.style.animation = 'shake 0.3s ease-in-out';
+                    setTimeout(() => {
+                        this.value = '';
+                        divider.style.background = 'var(--accent-red)';
+                        status.innerText = "SYSTEM RESTRICTED";
+                        status.style.color = "var(--accent-red)";
+                        codeInput.style.animation = '';
+                    }, 400);
+                }
+            }
+        });
+
+        function runGenerator() {
+            const output = document.getElementById('key-output');
+            const charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            let count = 0;
+            const stream = setInterval(() => {
+                let text = "";
+                for(let i=0; i<24; i++) text += charset.charAt(Math.floor(Math.random() * charset.length));
+                output.innerText = text;
+                count++;
+                if(count > 12) {
+                    clearInterval(stream);
+                    output.style.textShadow = "0 0 8px var(--accent-green)";
+                }
+            }, 40);
+        }
+    </script>
+</body>
+</html>
