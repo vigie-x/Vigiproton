@@ -67,9 +67,9 @@
             background: var(--accent-red);
             width: 100%;
             margin-bottom: 25px;
-            transition: all 0.3s;
         }
 
+        /* POLICE TYPE CODE POUR LES INSTRUCTIONS ET DESCRIPTIONS */
         .code-font {
             font-family: 'Courier New', Courier, monospace;
             letter-spacing: 1px;
@@ -118,24 +118,6 @@
             text-transform: uppercase;
             border: 1px solid var(--accent-green);
             padding: 10px 25px;
-            cursor: pointer;
-            background: transparent;
-        }
-
-        #key-res {
-            color: var(--accent-green);
-            font-size: 0.8rem;
-            margin-top: 15px;
-            display: block;
-            word-break: break-all;
-        }
-
-        /* ANIMATION REJET */
-        @keyframes shake {
-            0% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            50% { transform: translateX(5px); }
-            100% { transform: translateX(0); }
         }
 
         .footer-info {
@@ -149,11 +131,11 @@
 <body>
 
     <div id="lock">
-        <div class="status-line" id="status-text">System Restricted</div>
+        <div class="status-line">System Restricted</div>
         <h1>Vigiproton</h1>
         
         <input type="password" id="code" maxlength="4" placeholder="••••" autocomplete="off">
-        <div class="red-divider" id="divider"></div>
+        <div class="red-divider"></div>
 
         <div class="instructions-box">
             <p class="code-font">ANDROID : MENU ⋮ > AJOUTER À L'ÉCRAN D'ACCUEIL</p>
@@ -162,15 +144,8 @@
     </div>
 
     <div id="vault">
-        <div style="color: var(--accent-green); font-size: 0.6rem; margin-bottom: 20px;">[ ACCESS GRANTED ]</div>
+        <div style="color: var(--accent-red); font-size: 0.6rem; margin-bottom: 20px;">[ ACCESS GRANTED ]</div>
         <h1>Armurerie Privée</h1>
-
-        <div class="card">
-            <h3>00. Key Chamber</h3>
-            <p class="code-font">Génération de clés de cryptage 256-bit locales. Aucune trace serveur.</p>
-            <div id="key-res" class="code-font">---- ---- ---- ----</div>
-            <button onclick="generateKey()" class="btn-luxe" style="margin-top:15px">Générer</button>
-        </div>
 
         <div class="card">
             <h3>01. Faraday Shield</h3>
@@ -184,49 +159,28 @@
             <a href="https://amzn.to/4qWcLvj" target="_blank" class="btn-luxe">Acquérir</a>
         </div>
 
+        <div class="card">
+            <h3>03. Data Crypt</h3>
+            <p class="code-font">Sécurisation physique des transferts de données. Prévention contre l'extraction non autorisée.</p>
+            <a href="https://amzn.to/4bD8LLO" target="_blank" class="btn-luxe">Acquérir</a>
+        </div>
+
         <div class="footer-info code-font">Vigiproton | High Security Solutions</div>
     </div>
 
     <script>
         const input = document.getElementById('code');
-        const divider = document.getElementById('divider');
-        const status = document.getElementById('status-text');
-
         input.addEventListener('input', function() {
-            if (this.value.length === 4) {
-                if (this.value === '0741') {
-                    document.getElementById('lock').style.display = 'none';
-                    document.getElementById('vault').style.display = 'block';
-                    document.body.style.alignItems = 'flex-start';
-                    document.body.style.paddingTop = '50px';
-                    window.scrollTo(0,0);
-                } else {
-                    // EFFET REJET LUXE
-                    divider.style.background = 'white';
-                    input.style.animation = 'shake 0.3s ease';
-                    status.innerText = "Access Denied";
-                    setTimeout(() => {
-                        this.value = '';
-                        divider.style.background = '#FF3B30';
-                        status.innerText = "System Restricted";
-                        input.style.animation = '';
-                    }, 600);
-                }
+            if (this.value === '1111') {
+                document.getElementById('lock').style.display = 'none';
+                document.getElementById('vault').style.display = 'block';
+                document.body.style.alignItems = 'flex-start';
+                document.body.style.paddingTop = '50px';
+                window.scrollTo(0,0);
             }
         });
-
-        function generateKey() {
-            const res = document.getElementById('key-res');
-            const chars = "ABCDEF0123456789";
-            let iterations = 0;
-            const interval = setInterval(() => {
-                let k = "";
-                for(let i=0; i<24; i++) k += chars.charAt(Math.floor(Math.random()*chars.length));
-                res.innerText = k;
-                iterations++;
-                if(iterations > 15) clearInterval(interval);
-            }, 50);
-        }
     </script>
 </body>
 </html>
+
+
