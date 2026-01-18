@@ -1,139 +1,44 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIGIPROTON | SYSTEM</title>
+    <title>VIGIPROTON ROOT</title>
     <style>
-        body {
-            background-color: #000;
-            color: #00FF41;
-            font-family: 'Courier New', Courier, monospace;
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        /* ÉCRAN DE VERROUILLAGE */
-        #login-screen {
-            border: 1px solid #00FF41;
-            padding: 40px;
-            text-align: center;
-            max-width: 400px;
-            width: 90%;
-            position: relative;
-            background: rgba(0, 10, 0, 0.9);
-            display: block; /* Visible au départ */
-        }
-
-        /* CONTENU CACHÉ */
-        #main-content {
-            display: none; /* Caché totalement au départ */
-            width: 100%;
-            max-width: 800px;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .notification {
-            background: #002200;
-            border-left: 5px solid #00FF41;
-            padding: 15px;
-            margin-bottom: 25px;
-            font-size: 0.8rem;
-            text-align: left;
-        }
-
-        input {
-            background: #000;
-            border: 1px solid #00FF41;
-            color: #00FF41;
-            padding: 15px;
-            width: 100%;
-            box-sizing: border-box;
-            font-size: 1.5rem;
-            text-align: center;
-            outline: none;
-            margin-bottom: 20px;
-        }
-
-        button {
-            background: #00FF41;
-            color: #000;
-            border: none;
-            padding: 15px;
-            width: 100%;
-            font-weight: bold;
-            cursor: pointer;
-            text-transform: uppercase;
-        }
-
-        .item-card {
-            border: 1px solid #00FF41;
-            margin: 20px auto;
-            padding: 20px;
-            background: rgba(0, 20, 0, 0.5);
-        }
-
-        .scan-line {
-            width: 100%;
-            height: 2px;
-            background: rgba(0, 255, 65, 0.3);
-            position: absolute;
-            top: 0; left: 0;
-            animation: scanning 4s infinite linear;
-        }
-        @keyframes scanning { 0% { top: 0; } 100% { top: 100%; } }
+        body { background: #000; color: #0f0; font-family: monospace; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        #lock { text-align: center; border: 1px solid #0f0; padding: 50px; }
+        #vault { display: none; text-align: center; width: 100%; }
+        input { background: #000; border: 1px solid #0f0; color: #0f0; padding: 10px; text-align: center; font-size: 20px; }
+        .card { border: 1px solid #0f0; margin: 20px; padding: 20px; display: inline-block; width: 300px; }
     </style>
 </head>
 <body>
 
-    <div id="login-screen">
-        <div class="scan-line"></div>
+    <div id="lock">
         <h1>VIGIPROTON</h1>
-        <div class="notification">
-            [!] SYSTÈME VERROUILLÉ<br>
-            [!] IDENTIFICATION REQUISE
-        </div>
-        <input type="password" id="accessCode" placeholder="____">
-        <button onclick="unlock()">DÉVERROUILLER</button>
+        <p>TAPPER CODE SECRET :</p>
+        <input type="text" id="code" maxlength="4" autocomplete="off">
     </div>
 
-    <div id="main-content">
-        <h1>ACCESS GRANTED</h1>
-        <div class="notification">BIENVENUE DANS L'ARMURERIE, ARCHITECTE.</div>
-        
-        <div class="item-card">
-            <h3>SCANNER DE RÉSEAU v1.0</h3>
-            <p>Analyse de vulnérabilité en cours...</p>
-            <button>LANCER SCAN</button>
+    <div id="vault">
+        <h1>ACCÈS ROOT ACCORDÉ</h1>
+        <div class="card">
+            <h3>ARMURERIE</h3>
+            <p>Outils de protection.</p>
         </div>
-
-        <div class="item-card">
-            <h3>PROTECTION PHYSIQUE</h3>
-            <p>Accès aux équipements Faraday et anti-traçage.</p>
-            <button>VOIR LES ÉQUIPEMENTS</button>
+        <div class="card">
+            <h3>SCANNER</h3>
+            <p>Analyse système.</p>
         </div>
     </div>
 
     <script>
-        function unlock() {
-            const code = document.getElementById('accessCode').value;
-            if (code === '1111') {
-                // On cache le login et on affiche le contenu
-                document.getElementById('login-screen').style.display = 'none';
-                document.getElementById('main-content').style.display = 'block';
-                // On change le mode d'affichage du body pour permettre de voir le contenu
-                document.body.style.display = 'block';
-                document.body.style.overflowY = 'auto';
-            } else {
-                alert('ACCÈS REFUSÉ : CODE INVALIDE');
+        const input = document.getElementById('code');
+        input.addEventListener('input', function() {
+            if (this.value === '1111') {
+                document.getElementById('lock').style.display = 'none';
+                document.getElementById('vault').style.display = 'block';
+                document.body.style.background = '#050505';
             }
-        }
+        });
     </script>
-
 </body>
 </html>
