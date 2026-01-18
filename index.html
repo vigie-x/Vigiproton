@@ -46,6 +46,15 @@
         .red-divider { height: 1px; background: var(--accent-red); width: 100%; margin-bottom: 25px; }
         .code-font { font-family: 'Courier New', Courier, monospace; letter-spacing: 1px; }
 
+        /* INSTALL INSTRUCTIONS (LOCK PAGE) */
+        .instructions-box {
+            border-top: 1px solid #1a1a1a;
+            border-bottom: 1px solid #1a1a1a;
+            padding: 20px 0;
+            margin-top: 20px;
+        }
+        .instructions-box p { font-size: 0.6rem; color: var(--text-gray); margin: 8px 0; text-transform: uppercase; }
+
         .card { margin-bottom: 50px; border-left: 1px solid #222; padding-left: 20px; }
         .card h3 { font-size: 0.9rem; font-weight: 400; color: var(--text-white); text-transform: uppercase; margin-bottom: 10px; }
         .card p { font-size: 0.75rem; color: var(--text-white); line-height: 1.6; margin-bottom: 20px; }
@@ -56,13 +65,11 @@
             padding: 10px 25px; background: transparent; cursor: pointer; margin-right: 10px; margin-bottom: 10px;
         }
 
-        /* 07. THREAT BAR */
         .threat-bar { height: 4px; background: #1a1a1a; width: 100%; margin-top: 10px; position: relative; overflow: hidden; }
         .threat-fill { height: 100%; background: var(--accent-red); width: 65%; transition: width 1.5s ease-in-out; }
 
         .footer-info { font-size: 0.55rem; color: #222; margin-top: 50px; text-align: center; }
 
-        /* 06. VISION OVERLAY */
         #vision-overlay {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: black; z-index: 100; padding: 40px; box-sizing: border-box; overflow-y: auto;
@@ -76,6 +83,11 @@
         <h1>Vigiproton</h1>
         <input type="password" id="code" maxlength="4" placeholder="••••" inputmode="numeric">
         <div class="red-divider"></div>
+        
+        <div class="instructions-box">
+            <p class="code-font">ANDROID : MENU ⋮ > AJOUTER À L'ÉCRAN D'ACCUEIL</p>
+            <p class="code-font">APPLE : ICÔNE ↑ > SUR L'ÉCRAN D'ACCUEIL</p>
+        </div>
     </div>
 
     <div id="vault">
@@ -84,22 +96,42 @@
 
         <div class="card">
             <h3>00. Key Chamber</h3>
+            <p class="code-font">Génération d'identifiants de cryptage asymétrique. Sécurisation locale des échanges.</p>
             <div id="key-output" class="code-font" style="color: var(--accent-green); font-size: 0.7rem; min-height: 20px; margin-bottom: 20px;">[ SYSTÈME PRÊT ]</div>
             <button onclick="runGenerator()" class="btn-luxe">Générer</button>
         </div>
 
         <div class="card">
             <h3>01. Ghost Messaging</h3>
+            <p class="code-font">Cryptage de messages. Aucune trace serveur. Confidentialité totale garantie.</p>
             <textarea id="ghost-input" rows="3" placeholder="Saisir le message..."></textarea>
             <button onclick="ghostEncrypt()" class="btn-luxe">Chiffrer</button>
             <button onclick="ghostDecrypt()" class="btn-luxe" style="color: var(--text-gray); border-color: #333;">Déchiffrer</button>
         </div>
 
-        <div class="card"><h3>02. Multi-Tool Pentest</h3><a href="https://amzn.to/3NmS5hL" target="_blank" class="btn-luxe">Acquérir</a></div>
-        <div class="card"><h3>03. Payload Injector</h3><a href="https://amzn.to/4jNKF3c" target="_blank" class="btn-luxe">Acquérir</a></div>
-        <div class="card"><h3>04. Faraday Shield</h3><a href="https://amzn.to/45L6L0k" target="_blank" class="btn-luxe">Acquérir</a></div>
+        <div class="card">
+            <h3>02. Multi-Tool Pentest</h3>
+            <p class="code-font">Dispositif autonome pour l'analyse des protocoles radio, RFID et infra-rouge.</p>
+            <a href="https://amzn.to/3NmS5hL" target="_blank" class="btn-luxe">Acquérir</a>
+        </div>
 
-        <div class="card"><h3>05. Signal Hunter</h3><a href="https://amzn.to/4qApggA" target="_blank" class="btn-luxe">Acquérir</a></div>
+        <div class="card">
+            <h3>03. Payload Injector</h3>
+            <p class="code-font">Outil d'injection HID pour l'automatisation de scripts système via USB.</p>
+            <a href="https://amzn.to/4jNKF3c" target="_blank" class="btn-luxe">Acquérir</a>
+        </div>
+
+        <div class="card">
+            <h3>04. Faraday Shield</h3>
+            <p class="code-font">Protection électromagnétique de grade militaire. Neutralisation de tout signal.</p>
+            <a href="https://amzn.to/45L6L0k" target="_blank" class="btn-luxe">Acquérir</a>
+        </div>
+
+        <div class="card">
+            <h3>05. Signal Hunter</h3>
+            <p class="code-font">Analyse spectrale avancée pour la détection de dispositifs d'écoute et de traçage.</p>
+            <a href="https://amzn.to/4qApggA" target="_blank" class="btn-luxe">Acquérir</a>
+        </div>
 
         <div class="card">
             <h3>06. Intelligence Report</h3>
@@ -111,6 +143,7 @@
             <h3>07. Global Threat Level</h3>
             <p class="code-font">Status: <span id="threat-status" style="color: var(--accent-red);">[ DEFCON 3 ]</span></p>
             <div class="threat-bar"><div id="threat-fill" class="threat-fill"></div></div>
+            <p class="code-font" style="font-size: 0.5rem; margin-top: 10px; color: var(--text-gray);">Surveillance des flux mondiaux en temps réel.</p>
         </div>
 
         <div class="footer-info code-font">Vigiproton | High Security Solutions</div>
