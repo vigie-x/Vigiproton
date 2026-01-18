@@ -1,33 +1,127 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-    <title>VIGIPROTON ROOT</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIGIPROTON | OS</title>
     <style>
-        body { background: #000; color: #0f0; font-family: monospace; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        #lock { text-align: center; border: 1px solid #0f0; padding: 50px; }
-        #vault { display: none; text-align: center; width: 100%; }
-        input { background: #000; border: 1px solid #0f0; color: #0f0; padding: 10px; text-align: center; font-size: 20px; }
-        .card { border: 1px solid #0f0; margin: 20px; padding: 20px; display: inline-block; width: 300px; }
+        body { 
+            background: #000; 
+            color: #0f0; 
+            font-family: 'Courier New', monospace; 
+            margin: 0; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh;
+        }
+
+        #lock { text-align: center; width: 90%; }
+        
+        #vault { 
+            display: none; 
+            width: 100%; 
+            max-width: 600px; 
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        h1 { font-size: 1.8rem; letter-spacing: 3px; text-shadow: 0 0 10px #0f0; margin-bottom: 20px; }
+
+        input { 
+            background: #000; 
+            border: 1px solid #0f0; 
+            color: #0f0; 
+            padding: 15px; 
+            text-align: center; 
+            font-size: 24px; 
+            width: 100%; 
+            box-sizing: border-box;
+            outline: none;
+            box-shadow: 0 0 5px #0f0;
+        }
+
+        .card { 
+            border: 1px solid #0f0; 
+            margin: 25px 0; 
+            padding: 20px; 
+            background: rgba(0, 20, 0, 0.8);
+            text-align: left;
+            position: relative;
+        }
+
+        .card h3 { margin-top: 0; color: #fff; font-size: 1.1rem; text-transform: uppercase; border-bottom: 1px solid #0f0; padding-bottom: 10px; }
+        .card p { font-size: 0.85rem; line-height: 1.4; color: #0f0; }
+
+        .btn-link {
+            display: block;
+            width: 100%;
+            background: #0f0;
+            color: #000;
+            text-align: center;
+            padding: 14px 0;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .status-blink {
+            font-size: 0.7rem;
+            color: #0f0;
+            margin-bottom: 10px;
+            animation: blink 1.2s infinite;
+        }
+
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* Style pour le scan visuel */
+        .scan-line {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 2px;
+            background: rgba(0, 255, 0, 0.2);
+            z-index: 1000;
+            pointer-events: none;
+            animation: moveScan 4s infinite linear;
+        }
+        @keyframes moveScan { from { top: 0; } to { top: 100%; } }
     </style>
 </head>
 <body>
 
+    <div class="scan-line"></div>
+
     <div id="lock">
         <h1>VIGIPROTON</h1>
-        <p>TAPPER CODE SECRET :</p>
-        <input type="text" id="code" maxlength="4" autocomplete="off">
+        <div class="status-blink">[ ATTENTE IDENTIFICATION NIVEAU 4 ]</div>
+        <input type="password" id="code" maxlength="4" placeholder="____" autocomplete="off">
     </div>
 
     <div id="vault">
-        <h1>ACCÈS ROOT ACCORDÉ</h1>
+        <h1>ARMURERIE SÉCURISÉE</h1>
+        <p style="font-size: 0.7rem; margin-bottom: 30px;">AUTH: ARCHITECTE | ACCÈS ÉLÉVÉ</p>
+
         <div class="card">
-            <h3>ARMURERIE</h3>
-            <p>Outils de protection.</p>
+            <h3>Module Faraday Pro</h3>
+            <p>Isolation totale des signaux GSM, WiFi et GPS. Indispensable pour l'anonymat physique.</p>
+            <a href="https://amzn.to/4qWT7iP" target="_blank" class="btn-link">DÉPLOYER</a>
         </div>
+
         <div class="card">
-            <h3>SCANNER</h3>
-            <p>Analyse système.</p>
+            <h3>Scanner de Fréquences</h3>
+            <p>Détection des trackers et caméras espion. Nettoyez votre environnement immédiat.</p>
+            <a href="https://amzn.to/4qWcLvj" target="_blank" class="btn-link">DÉPLOYER</a>
         </div>
+
+        <div class="card">
+            <h3>Protection Data-Link</h3>
+            <p>Sécurité des échanges physiques et blocage des interceptions de données.</p>
+            <a href="https://amzn.to/4bD8LLO" target="_blank" class="btn-link">DÉPLOYER</a>
+        </div>
+
+        <p style="font-size: 0.6rem; opacity: 0.4; text-align: center; margin-top: 40px;">SYSTEM STATUS: ENCRYPTED | NO EXTERNAL LOGS</p>
     </div>
 
     <script>
@@ -36,7 +130,9 @@
             if (this.value === '1111') {
                 document.getElementById('lock').style.display = 'none';
                 document.getElementById('vault').style.display = 'block';
-                document.body.style.background = '#050505';
+                // Permettre le scroll une fois déverrouillé
+                document.body.style.display = 'block';
+                document.body.style.overflowY = 'auto';
             }
         });
     </script>
