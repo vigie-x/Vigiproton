@@ -52,9 +52,11 @@
         }
         .instructions-box p { font-size: 0.6rem; color: var(--text-gray); margin: 8px 0; text-transform: uppercase; }
 
+        /* CARDS & DETAILS */
         .card { margin-bottom: 50px; border-left: 1px solid #222; padding-left: 20px; }
         .card h3 { font-size: 0.9rem; font-weight: 400; color: var(--text-white); text-transform: uppercase; margin-bottom: 10px; }
-        .card p { font-size: 0.75rem; color: var(--text-white); line-height: 1.6; margin-bottom: 20px; }
+        .card p { font-size: 0.7rem; color: #888; line-height: 1.6; margin-bottom: 15px; }
+        .tech-specs { font-size: 0.6rem; color: var(--text-gray); margin-bottom: 20px; text-transform: uppercase; border-top: 1px solid #111; padding-top: 10px; }
 
         .btn-luxe {
             display: inline-block; color: var(--accent-green); text-decoration: none; font-size: 0.7rem; 
@@ -62,7 +64,9 @@
             padding: 10px 25px; background: transparent; cursor: pointer; margin-right: 10px; margin-bottom: 10px;
         }
 
-        .threat-bar { height: 4px; background: #1a1a1a; width: 100%; margin-top: 10px; position: relative; overflow: hidden; }
+        /* 07. THREAT BAR RECTANGLE BLANC */
+        .threat-container { border: 1px solid var(--text-white); padding: 15px; margin-top: 20px; }
+        .threat-bar { height: 4px; background: #1a1a1a; width: 100%; position: relative; overflow: hidden; }
         .threat-fill { height: 100%; background: var(--accent-red); width: 65%; transition: width 1.5s ease-in-out; }
 
         .footer-info { font-size: 0.55rem; color: #222; margin-top: 50px; text-align: center; }
@@ -71,10 +75,7 @@
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: black; z-index: 100; padding: 40px; box-sizing: border-box; overflow-y: auto;
         }
-
         .protocol-content { color: var(--text-white); font-size: 0.75rem; line-height: 1.7; text-align: left; }
-        .protocol-title { color: var(--accent-red); font-size: 0.9rem; margin-bottom: 30px; letter-spacing: 2px; }
-        .protocol-step-title { color: var(--text-white); font-weight: bold; margin-top: 25px; display: block; }
     </style>
 </head>
 <body>
@@ -93,40 +94,65 @@
     <div id="vault">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
             <div style="color: var(--accent-red); font-size: 0.6rem; letter-spacing: 2px;">[ ACCESS GRANTED ]</div>
-            <div onclick="openOverlay('protocol-overlay')" style="color: var(--text-gray); font-size: 0.55rem; cursor: pointer; border: 1px solid #222; padding: 4px 8px; letter-spacing: 1px;">PROTOCOLE D'ACCÈS</div>
+            <div onclick="openOverlay('protocol-overlay')" style="color: var(--text-gray); font-size: 0.55rem; cursor: pointer; border: 1px solid #222; padding: 4px 8px;">PROTOCOLE D'ACCÈS</div>
         </div>
         <h1>Armurerie Privée</h1>
 
         <div class="card">
             <h3>00. Key Chamber</h3>
-            <p class="code-font">Générateur de clés de sécurité. Ne jamais réutiliser deux fois la même clé.</p>
+            <p class="code-font">Module de génération de clés aléatoires haute entropie.</p>
             <div id="key-output" class="code-font" style="color: var(--accent-green); font-size: 0.7rem; min-height: 20px; margin-bottom: 20px;">[ SYSTÈME PRÊT ]</div>
             <button onclick="runGenerator()" class="btn-luxe">Générer</button>
         </div>
 
         <div class="card">
             <h3>01. Ghost Messaging</h3>
-            <p class="code-font">Cryptage local. Aucun texte clair ne doit transiter sur le réseau.</p>
             <textarea id="ghost-input" rows="3" placeholder="Saisir le message..."></textarea>
             <button onclick="ghostEncrypt()" class="btn-luxe">Chiffrer</button>
             <button onclick="ghostDecrypt()" class="btn-luxe" style="color: var(--text-gray); border-color: #333;">Déchiffrer</button>
         </div>
 
-        <div class="card"><h3>02. Multi-Tool Pentest</h3><p class="code-font">Analyse radio, RFID et infra-rouge.</p><a href="https://amzn.to/3NmS5hL" target="_blank" class="btn-luxe">Acquérir</a></div>
-        <div class="card"><h3>03. Payload Injector</h3><p class="code-font">Injection HID USB automatisée.</p><a href="https://amzn.to/4jNKF3c" target="_blank" class="btn-luxe">Acquérir</a></div>
-        <div class="card"><h3>04. Faraday Shield</h3><p class="code-font">Protection électromagnétique militaire.</p><a href="https://amzn.to/45L6L0k" target="_blank" class="btn-luxe">Acquérir</a></div>
-        <div class="card"><h3>05. Signal Hunter</h3><p class="code-font">Détection spectrale de micros et traceurs.</p><a href="https://amzn.to/4qApggA" target="_blank" class="btn-luxe">Acquérir</a></div>
+        <div class="card">
+            <h3>02. Multi-Tool Pentest</h3>
+            <p class="code-font">Dispositif autonome pour l'interception et l'émulation des protocoles radio Sub-1 GHz, RFID, NFC et Bluetooth.</p>
+            <div class="tech-specs">Fréq: 300-928 MHz | RFID: 125kHz | NFC: 13.56MHz</div>
+            <a href="https://amzn.to/3NmS5hL" target="_blank" class="btn-luxe">Acquérir</a>
+        </div>
+
+        <div class="card">
+            <h3>03. Payload Injector</h3>
+            <p class="code-font">Outil d'attaque HID. Permet l'injection automatique de scripts via un clavier émulé pour bypasser les sécurités physiques.</p>
+            <div class="tech-specs">Interface: USB-A/C | Script: DuckyScript 3.0 | Exécution: < 1ms</div>
+            <a href="https://amzn.to/4jNKF3c" target="_blank" class="btn-luxe">Acquérir</a>
+        </div>
+
+        <div class="card">
+            <h3>04. Faraday Shield</h3>
+            <p class="code-font">Sac de blindage électromagnétique isolant totalement vos appareils du réseau (GSM, WiFi, GPS, Bluetooth).</p>
+            <div class="tech-specs">Atténuation: > 85dB | Grade: Militaire | Protection: Anti-EMP</div>
+            <a href="https://amzn.to/45L6L0k" target="_blank" class="btn-luxe">Acquérir</a>
+        </div>
+
+        <div class="card">
+            <h3>05. Signal Hunter</h3>
+            <p class="code-font">Analyseur de champ RF capable de détecter les caméras espionnes, les micros cachés et les traceurs GPS actifs.</p>
+            <div class="tech-specs">Gamme: 1MHz - 6.5GHz | Sensibilité: 5 niveaux | Détection: Laser IR</div>
+            <a href="https://amzn.to/4qApggA" target="_blank" class="btn-luxe">Acquérir</a>
+        </div>
 
         <div class="card">
             <h3>06. Intelligence Report</h3>
-            <p class="code-font">Accès au manifeste de l'Architecte.</p>
+            <p class="code-font">Accès direct aux archives et au manifeste stratégique de l'Architecte.</p>
             <button onclick="openOverlay('vision-overlay')" class="btn-luxe">Consulter</button>
         </div>
 
         <div class="card">
             <h3>07. Global Threat Level</h3>
-            <p class="code-font">Niveau de menace en temps réel.</p>
-            <div class="threat-bar"><div id="threat-fill" class="threat-fill"></div></div>
+            <div class="threat-container">
+                <p class="code-font" style="font-size: 0.6rem; color: white; margin-bottom: 10px;">MONITORING STATUS: ACTIVE</p>
+                <div class="threat-bar"><div id="threat-fill" class="threat-fill"></div></div>
+                <p class="code-font" style="font-size: 0.5rem; margin-top: 10px; color: var(--text-gray);">ANALYSE DES FLUX : STABLE</p>
+            </div>
         </div>
 
         <div class="footer-info code-font">Vigiproton | High Security Solutions</div>
@@ -135,44 +161,19 @@
     <div id="protocol-overlay" class="overlay">
         <div onclick="closeOverlay('protocol-overlay')" style="color: var(--text-gray); font-size: 0.7rem; margin-bottom: 40px; cursor: pointer;">[ FERMER ]</div>
         <div class="protocol-content code-font">
-            <div class="protocol-title">// VIGIPROTON : PROTOCOLE D'ACCÈS (V2)</div>
-            
-            <span class="protocol-step-title">00. KEY CHAMBER (SÉCURITÉ DES MDP)</span>
-            Avant toute opération, utilise le module 00 pour générer des identifiants de haute sécurité.<br>
-            Appuie sur [ GÉNÉRER ].<br>
-            Utilise ces clés pour tes mots de passe ou tes identifiants de session.<br>
-            Ne réutilise jamais deux fois la même clé.<br>
-
-            <span class="protocol-step-title">01. GHOST MESSAGING (COMMUNICATIONS)</span>
-            L'usage du canal 01 est obligatoire pour tout échange sensible :<br>
-            Saisis ton message en clair.<br>
-            Appuie sur [ CHIFFRER ].<br>
-            Transmets le code crypté.<br>
-            Pour lire un message reçu, colle le code et appuie sur [ DÉCHIFFRER ].<br>
-            Rappel : Aucun texte clair ne doit transiter sur les réseaux non sécurisés.<br>
-
-            <span class="protocol-step-title">02. L'ARMURERIE (MATÉRIEL)</span>
-            Les modules 02 à 05 listent les équipements critiques (Pentest, Injection, Protection Faraday). Acquiers ton matériel via les liens sécurisés.<br>
-
-            <span class="protocol-step-title">03. INSTALLATION MOBILE</span>
-            Pour transformer cette interface en application tactique :<br>
-            Apple : Icône ↑ > "Sur l'écran d'accueil".<br>
-            Android : Menu ⋮ > "Ajouter à l'écran d'accueil".<br>
-
-            <span class="protocol-step-title">04. VEILLE ET VISION</span>
-            Le Module 06 contient tes ordres. Le Module 07 affiche l'état de menace mondial. Si le niveau passe en CRITICAL, coupe tes signaux.<br><br>
-
-            <div style="border-top: 1px solid #222; padding-top: 20px; margin-top: 20px;">
-                CODE D'ACCÈS : 0741<br>
-                RESTE INVISIBLE. RESTE OPÉRAȚIONNEL.
-            </div>
+            <div style="color: var(--accent-red); margin-bottom: 20px;">// PROTOCOLE D'ACCÈS (V2)</div>
+            00. KEY CHAMBER : Générer des clés pour chaque session.<br>
+            01. GHOST MESSAGING : Chiffrer avant tout envoi.<br>
+            02-05. ARSENAL : Équipement tactique requis.<br>
+            03. INSTALLATION : Ajouter à l'écran d'accueil pour discrétion.<br>
+            CODE : 0741 | RESTE INVISIBLE.
         </div>
     </div>
 
     <div id="vision-overlay" class="overlay">
         <div onclick="closeOverlay('vision-overlay')" style="color: var(--text-gray); font-size: 0.7rem; margin-bottom: 40px; cursor: pointer;">[ FERMER ]</div>
-        <h2 class="code-font" style="font-size: 1rem; color: var(--accent-green);">// LA VISION</h2>
-        <p class="code-font" style="font-size: 0.8rem; line-height: 1.8;">L'indépendance numérique n'est plus un choix, c'est une survie. Vigiproton équipe ceux qui refusent d'être surveillés. L'ordre est établi.</p>
+        <h2 class="code-font" style="color: var(--accent-green);">// LA VISION</h2>
+        <p class="code-font" style="font-size: 0.8rem;">L'indépendance numérique n'est plus un choix, c'est une survie. L'ordre est établi.</p>
     </div>
 
     <script>
