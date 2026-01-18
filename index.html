@@ -3,182 +3,231 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIGIPROTON | HIGH-END SECURITY</title>
+    <title>VIGIPROTON | ARCHITECT</title>
     <style>
-        :root {
-            --accent-red: #FF3B30;
-            --accent-green: #34C759;
-            --text-white: #FFFFFF;
-            --text-gray: #555555; 
-            --bg-black: #000000;
-        }
-
-        body { 
-            background: var(--bg-black); 
-            color: var(--text-white); 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
-            margin: 0; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            min-height: 100vh;
-            letter-spacing: 0.05em;
-        }
-
-        #lock, #vault { 
-            width: 90%; 
-            max-width: 450px; 
-            text-align: center; 
-        }
-
-        #vault { display: none; text-align: left; }
-
-        h1 { 
-            font-size: 1.2rem; 
-            font-weight: 200; 
-            text-transform: uppercase; 
-            letter-spacing: 0.3em; 
-            margin-bottom: 40px; 
-        }
-
-        .status-line {
-            font-size: 0.65rem;
-            color: var(--accent-red);
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
-
-        input { 
-            background: transparent; 
-            border: none; 
-            color: var(--text-white); 
-            padding: 15px; 
-            text-align: center; 
-            font-size: 1.5rem; 
-            width: 100%; 
-            box-sizing: border-box;
-            outline: none;
-            font-weight: 100;
-            letter-spacing: 10px;
-        }
-
-        .red-divider {
-            height: 1px;
-            background: var(--accent-red);
-            width: 100%;
-            margin-bottom: 25px;
-        }
-
-        /* POLICE TYPE CODE POUR LES INSTRUCTIONS ET DESCRIPTIONS */
-        .code-font {
+        body {
+            background-color: #000;
+            color: #fff;
             font-family: 'Courier New', Courier, monospace;
-            letter-spacing: 1px;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            transition: background-color 0.5s ease;
         }
 
-        .instructions-box {
-            border-top: 1px solid #1a1a1a;
-            border-bottom: 1px solid #1a1a1a;
-            padding: 20px 0;
+        /* ÉCRAN DE LOGIN (GATEKEEPER) */
+        #login-screen {
+            text-align: center;
+            transition: opacity 0.5s ease;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            letter-spacing: 15px;
+            margin-bottom: 40px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        input {
+            background: none;
+            border: none;
+            border-bottom: 1px solid #333;
+            color: #fff;
+            font-size: 1.5rem;
+            text-align: center;
+            padding: 10px;
+            outline: none;
+            width: 150px;
+            letter-spacing: 10px;
+            transition: all 0.3s ease;
+        }
+
+        /* INTERFACE PRINCIPALE (CACHÉE AU DÉBUT) */
+        #main-interface {
+            display: none;
+            width: 90%;
+            max-width: 1000px;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .module-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .box {
+            border: 1px solid #fff;
+            background: #050505;
+            padding: 25px;
+            position: relative;
+        }
+
+        .box h3 {
+            font-size: 0.7rem;
+            color: #00ff00;
+            margin: 0 0 15px 0;
+            letter-spacing: 2px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            background: #000;
+            border: 1px solid #222;
+            color: #fff;
+            padding: 10px;
+            box-sizing: border-box;
+            resize: none;
+            outline: none;
+        }
+
+        button {
+            background: #fff;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.8rem;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #00ff00;
+        }
+
+        #key-display {
+            font-size: 0.9rem;
+            word-break: break-all;
+            min-height: 40px;
+            color: #555;
+            border: 1px dashed #222;
+            padding: 15px;
             margin-top: 10px;
         }
 
-        .instructions-box p {
-            font-size: 0.65rem;
-            color: var(--text-gray);
-            margin: 8px 0;
+        /* ANIMATIONS */
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            50% { transform: translateX(10px); }
+            75% { transform: translateX(-10px); }
+            100% { transform: translateX(0); }
         }
 
-        .card { 
-            margin-bottom: 50px; 
-            border-left: 1px solid #222;
-            padding-left: 20px;
-        }
-
-        .card h3 { 
-            font-size: 0.9rem; 
-            font-weight: 400; 
-            color: var(--text-white); 
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
-
-        .card p { 
-            font-size: 0.75rem; 
-            color: var(--text-white); 
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .btn-luxe {
-            display: inline-block;
-            color: var(--accent-green);
-            text-decoration: none;
-            font-size: 0.7rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            border: 1px solid var(--accent-green);
-            padding: 10px 25px;
-        }
-
-        .footer-info {
-            font-size: 0.55rem;
-            color: #222;
-            margin-top: 50px;
-            text-align: center;
+        .glitch {
+            animation: shake 0.3s ease-in-out;
+            border-bottom: 1px solid #ff0000 !important;
+            color: #ff0000 !important;
         }
     </style>
 </head>
 <body>
 
-    <div id="lock">
-        <div class="status-line">System Restricted</div>
-        <h1>Vigiproton</h1>
-        
-        <input type="password" id="code" maxlength="4" placeholder="••••" autocomplete="off">
-        <div class="red-divider"></div>
-
-        <div class="instructions-box">
-            <p class="code-font">ANDROID : MENU ⋮ > AJOUTER À L'ÉCRAN D'ACCUEIL</p>
-            <p class="code-font">APPLE : ICÔNE ↑ > SUR L'ÉCRAN D'ACCUEIL</p>
-        </div>
+    <div id="login-screen">
+        <div class="logo">VIGIPROTON</div>
+        <input type="password" id="access-code" placeholder="----" maxlength="4">
+        <p style="font-size: 0.6rem; color: #333; margin-top: 20px;">SYSTEM ACCESS REQUIRED</p>
     </div>
 
-    <div id="vault">
-        <div style="color: var(--accent-red); font-size: 0.6rem; margin-bottom: 20px;">[ ACCESS GRANTED ]</div>
-        <h1>Armurerie Privée</h1>
+    <div id="main-interface">
+        <div style="text-align: left; margin-bottom: 20px;">
+            <span style="color: #00ff00;">●</span> SYSTEM_ONLINE | WELCOME_ROOT
+        </div>
+        
+        <div class="module-grid">
+            <div class="box">
+                <h3>[ 01_DATA_VAULT ]</h3>
+                <textarea id="vault-input" placeholder="Entrer un message secret..."></textarea>
+                <button onclick="encryptAction()">ENCRYPT & LOCK</button>
+            </div>
 
-        <div class="card">
-            <h3>01. Faraday Shield</h3>
-            <p class="code-font">Protection électromagnétique de grade militaire. Neutralisation de tout signal entrant ou sortant.</p>
-            <a href="https://amzn.to/4qWT7iP" target="_blank" class="btn-luxe">Acquérir</a>
+            <div class="box">
+                <h3>[ 02_KEY_CHAMBER ]</h3>
+                <div id="key-display">NO_KEY_GENERATED</div>
+                <button onclick="generateKey()">GÉNÉRER CLÉ 256-BIT</button>
+            </div>
         </div>
 
-        <div class="card">
-            <h3>02. Signal Hunter</h3>
-            <p class="code-font">Analyse spectrale avancée pour la détection de dispositifs d'écoute et de traçage passifs.</p>
-            <a href="https://amzn.to/4qWcLvj" target="_blank" class="btn-luxe">Acquérir</a>
+        <div style="margin-top: 20px; font-size: 0.6rem; color: #444;">
+            ARCHITECTURE BY VIGIPROTON © 2026 | NO DATA LOGGED
         </div>
-
-        <div class="card">
-            <h3>03. Data Crypt</h3>
-            <p class="code-font">Sécurisation physique des transferts de données. Prévention contre l'extraction non autorisée.</p>
-            <a href="https://amzn.to/4bD8LLO" target="_blank" class="btn-luxe">Acquérir</a>
-        </div>
-
-        <div class="footer-info code-font">Vigiproton | High Security Solutions</div>
     </div>
 
     <script>
-        const input = document.getElementById('code');
-        input.addEventListener('input', function() {
-            if (this.value === '1111') {
-                document.getElementById('lock').style.display = 'none';
-                document.getElementById('vault').style.display = 'block';
-                document.body.style.alignItems = 'flex-start';
-                document.body.style.paddingTop = '50px';
-                window.scrollTo(0,0);
+        const MASTER_CODE = "0741";
+        const loginInput = document.getElementById('access-code');
+        const loginScreen = document.getElementById('login-screen');
+        const mainInterface = document.getElementById('main-interface');
+
+        // GESTION DU LOGIN
+        loginInput.addEventListener('input', (e) => {
+            if (loginInput.value.length === 4) {
+                if (loginInput.value === MASTER_CODE) {
+                    unlockSystem();
+                } else {
+                    failSystem();
+                }
             }
         });
+
+        function unlockSystem() {
+            loginInput.style.color = "#00ff00";
+            loginInput.style.borderBottom = "1px solid #00ff00";
+            setTimeout(() => {
+                loginScreen.style.opacity = "0";
+                setTimeout(() => {
+                    loginScreen.style.display = "none";
+                    mainInterface.style.display = "block";
+                    setTimeout(() => { mainInterface.style.opacity = "1"; }, 50);
+                }, 500);
+            }, 300);
+        }
+
+        function failSystem() {
+            loginInput.classList.add('glitch');
+            setTimeout(() => {
+                loginInput.value = "";
+                loginInput.classList.remove('glitch');
+            }, 500);
+        }
+
+        // LOGIQUE DU GÉNÉRATEUR
+        function generateKey() {
+            const display = document.getElementById('key-display');
+            const chars = "ABCDEF0123456789";
+            let iterations = 0;
+            
+            const interval = setInterval(() => {
+                let randomKey = "";
+                for(let i=0; i<32; i++) randomKey += chars.charAt(Math.floor(Math.random() * chars.length));
+                display.innerText = randomKey;
+                display.style.color = "#00ff00";
+                iterations++;
+                if (iterations > 20) {
+                    clearInterval(interval);
+                    display.style.textShadow = "0 0 5px #00ff00";
+                }
+            }, 40);
+        }
+
+        // LOGIQUE DU VAULT
+        function encryptAction() {
+            const input = document.getElementById('vault-input');
+            if (input.value === "") return;
+            // Simulation de cryptage visuel
+            input.value = btoa(input.value).substring(0, 64) + "... [LOCKED]";
+            input.style.color = "#ff0000";
+            input.disabled = true;
+        }
     </script>
 </body>
 </html>
