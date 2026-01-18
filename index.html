@@ -5,13 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VIGIPROTON | HIGH-END SECURITY</title>
     <style>
-        @keyframes shake {
-    0% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    50% { transform: translateX(5px); }
-    100% { transform: translateX(0); }
-}
-
         :root {
             --accent-red: #FF3B30;
             --accent-green: #34C759;
@@ -74,9 +67,9 @@
             background: var(--accent-red);
             width: 100%;
             margin-bottom: 25px;
+            transition: background 0.3s ease;
         }
 
-        /* POLICE TYPE CODE POUR LES INSTRUCTIONS ET DESCRIPTIONS */
         .code-font {
             font-family: 'Courier New', Courier, monospace;
             letter-spacing: 1px;
@@ -125,6 +118,8 @@
             text-transform: uppercase;
             border: 1px solid var(--accent-green);
             padding: 10px 25px;
+            background: transparent;
+            cursor: pointer;
         }
 
         .footer-info {
@@ -132,6 +127,14 @@
             color: #222;
             margin-top: 50px;
             text-align: center;
+        }
+
+        /* Animation Rejet */
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-8px); }
+            50% { transform: translateX(8px); }
+            100% { transform: translateX(0); }
         }
     </style>
 </head>
@@ -142,7 +145,7 @@
         <h1>Vigiproton</h1>
         
         <input type="password" id="code" maxlength="4" placeholder="••••" autocomplete="off">
-        <div class="red-divider"></div>
+        <div class="red-divider" id="divider"></div>
 
         <div class="instructions-box">
             <p class="code-font">ANDROID : MENU ⋮ > AJOUTER À L'ÉCRAN D'ACCUEIL</p>
@@ -151,58 +154,7 @@
     </div>
 
     <div id="vault">
-        <div style="color: var(--accent-red); font-size: 0.6rem; margin-bottom: 20px;">[ ACCESS GRANTED ]</div>
+        <div style="color: var(--accent-green); font-size: 0.6rem; margin-bottom: 20px;">[ ACCESS GRANTED ]</div>
         <h1>Armurerie Privée</h1>
 
-        <div class="card">
-            <h3>01. Faraday Shield</h3>
-            <p class="code-font">Protection électromagnétique de grade militaire. Neutralisation de tout signal entrant ou sortant.</p>
-            <a href="https://amzn.to/4qWT7iP" target="_blank" class="btn-luxe">Acquérir</a>
-        </div>
-
-        <div class="card">
-            <h3>02. Signal Hunter</h3>
-            <p class="code-font">Analyse spectrale avancée pour la détection de dispositifs d'écoute et de traçage passifs.</p>
-            <a href="https://amzn.to/4qWcLvj" target="_blank" class="btn-luxe">Acquérir</a>
-        </div>
-
-        <div class="card">
-            <h3>03. Data Crypt</h3>
-            <p class="code-font">Sécurisation physique des transferts de données. Prévention contre l'extraction non autorisée.</p>
-            <a href="https://amzn.to/4bD8LLO" target="_blank" class="btn-luxe">Acquérir</a>
-        </div>
-
-        <div class="footer-info code-font">Vigiproton | High Security Solutions</div>
-    </div>
-
-    <script>
-    const input = document.getElementById('code');
-    const divider = document.querySelector('.red-divider');
-
-    input.addEventListener('input', function() {
-        if (this.value.length === 4) {
-            if (this.value === '0741') {
-                // ACCÈS VALIDE
-                document.getElementById('lock').style.display = 'none';
-                document.getElementById('vault').style.display = 'block';
-                document.body.style.alignItems = 'flex-start';
-                document.body.style.paddingTop = '50px';
-                window.scrollTo(0,0);
-            } else {
-                // ÉCHEC : ANIMATION DE REJET SUR LA BARRE ROUGE
-                divider.style.background = '#FFFFFF'; // La barre devient blanche un instant
-                input.style.animation = 'shake 0.3s ease';
-                setTimeout(() => {
-                    this.value = '';
-                    divider.style.background = 'var(--accent-red)';
-                    input.style.animation = '';
-                }, 400);
-            }
-        }
-    });
-</script>
-
-</body>
-</html>
-
-
+        
