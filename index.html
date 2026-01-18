@@ -9,7 +9,7 @@
             --accent-red: #FF3B30;
             --accent-green: #34C759;
             --text-white: #FFFFFF;
-            --text-gray: #444444; /* Gris plus sombre pour les instructions */
+            --text-gray: #555555; 
             --bg-black: #000000;
         }
 
@@ -48,42 +48,42 @@
             margin-bottom: 10px;
         }
 
-        /* INPUT CODE EN VERT */
+        /* INPUT CODE EN BLANC */
         input { 
             background: transparent; 
             border: none; 
-            color: var(--accent-green); 
+            color: var(--text-white); 
             padding: 15px; 
             text-align: center; 
             font-size: 1.5rem; 
             width: 100%; 
             box-sizing: border-box;
             outline: none;
-            font-weight: bold;
+            font-weight: 100;
             letter-spacing: 10px;
         }
 
-        /* BARRE ROUGE SOUS LE CODE */
+        /* BARRE ROUGE */
         .red-divider {
             height: 1px;
             background: var(--accent-red);
             width: 100%;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
-        /* SECTION INSTRUCTIONS GRISES */
+        /* SECTION INSTRUCTIONS GRISES AVEC POLICE CODE */
         .instructions-box {
-            border-top: 1px solid #222;
-            border-bottom: 1px solid #222;
-            padding: 15px 0;
-            margin-top: 20px;
+            border-top: 1px solid #1a1a1a;
+            border-bottom: 1px solid #1a1a1a;
+            padding: 20px 0;
+            margin-top: 10px;
         }
 
         .instructions-box p {
-            font-size: 0.6rem;
+            font-family: 'Courier New', Courier, monospace; /* Police de la photo */
+            font-size: 0.65rem;
             color: var(--text-gray);
-            text-transform: uppercase;
-            margin: 5px 0;
+            margin: 8px 0;
             letter-spacing: 1px;
         }
 
@@ -114,7 +114,7 @@
 
         .footer-info {
             font-size: 0.55rem;
-            color: #333;
+            color: #222;
             margin-top: 50px;
             text-align: center;
         }
@@ -130,8 +130,8 @@
         <div class="red-divider"></div>
 
         <div class="instructions-box">
-            <p>Android : Menu ⋮ > Ajouter à l'écran d'accueil</p>
-            <p>Apple : Icône ↑ > Sur l'écran d'accueil</p>
+            <p>ANDROID : MENU ⋮ > AJOUTER À L'ÉCRAN D'ACCUEIL</p>
+            <p>APPLE : ICÔNE ↑ > SUR L'ÉCRAN D'ACCUEIL</p>
         </div>
     </div>
 
