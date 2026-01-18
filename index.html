@@ -48,18 +48,27 @@
             margin-bottom: 10px;
         }
 
-        input { 
+        input, textarea { 
             background: transparent; 
             border: none; 
             color: var(--text-white); 
             padding: 15px; 
             text-align: center; 
-            font-size: 1.5rem !important; 
-            width: 100%; 
             box-sizing: border-box;
             outline: none;
             font-weight: 100;
-            letter-spacing: 10px;
+        }
+
+        input { font-size: 1.5rem !important; width: 100%; letter-spacing: 10px; }
+
+        textarea { 
+            width: 100%; 
+            border: 1px solid #1a1a1a; 
+            font-family: 'Courier New', monospace; 
+            font-size: 0.8rem; 
+            margin-bottom: 15px;
+            text-align: left;
+            resize: none;
         }
 
         .red-divider {
@@ -119,13 +128,8 @@
             padding: 10px 25px;
             background: transparent;
             cursor: pointer;
-        }
-
-        @keyframes shake {
-            0% { transform: translateX(0); }
-            25% { transform: translateX(-8px); }
-            50% { transform: translateX(8px); }
-            100% { transform: translateX(0); }
+            margin-right: 10px;
+            margin-bottom: 10px;
         }
 
         .footer-info {
@@ -133,6 +137,13 @@
             color: #222;
             margin-top: 50px;
             text-align: center;
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-8px); }
+            50% { transform: translateX(8px); }
+            100% { transform: translateX(0); }
         }
     </style>
 </head>
@@ -155,32 +166,40 @@
 
         <div class="card">
             <h3>00. Key Chamber</h3>
-            <p class="code-font">Génération d'identifiants de cryptage asymétrique. Sécurisation locale des échanges.</p>
+            <p class="code-font">Génération d'identifiants de cryptage. Sécurisation locale.</p>
             <div id="key-output" class="code-font" style="color: var(--accent-green); font-size: 0.7rem; min-height: 20px; margin-bottom: 20px;">[ SYSTÈME PRÊT ]</div>
             <button onclick="runGenerator()" class="btn-luxe">Générer</button>
         </div>
 
         <div class="card">
-            <h3>01. Multi-Tool Pentest</h3>
-            <p class="code-font">Outil autonome pour l'analyse des protocoles radio, RFID et infra-rouge.</p>
+            <h3>01. Ghost Messaging</h3>
+            <p class="code-font">Cryptage asymétrique de messages. Ne laisse aucune trace sur le réseau.</p>
+            <textarea id="ghost-input" rows="3" placeholder="Saisir le message..."></textarea>
+            <button onclick="ghostEncrypt()" class="btn-luxe">Chiffrer</button>
+            <button onclick="ghostDecrypt()" class="btn-luxe" style="color: var(--text-gray); border-color: #333;">Déchiffrer</button>
+        </div>
+
+        <div class="card">
+            <h3>02. Multi-Tool Pentest</h3>
+            <p class="code-font">Outil autonome pour l'analyse des protocoles radio et RFID.</p>
             <a href="https://amzn.to/3NmS5hL" target="_blank" class="btn-luxe">Acquérir</a>
         </div>
 
         <div class="card">
-            <h3>02. Payload Injector</h3>
-            <p class="code-font">Injection HID ultra-rapide pour l'automatisation de scripts système via USB.</p>
+            <h3>03. Payload Injector</h3>
+            <p class="code-font">Injection HID ultra-rapide pour l'automatisation USB.</p>
             <a href="https://amzn.to/4jNKF3c" target="_blank" class="btn-luxe">Acquérir</a>
         </div>
 
         <div class="card">
-            <h3>03. Faraday Shield</h3>
-            <p class="code-font">Protection électromagnétique militaire. Neutralisation de tout signal (WiFi, GPS, GSM).</p>
+            <h3>04. Faraday Shield</h3>
+            <p class="code-font">Protection électromagnétique. Neutralisation de tout signal.</p>
             <a href="https://amzn.to/45L6L0k" target="_blank" class="btn-luxe">Acquérir</a>
         </div>
 
         <div class="card">
-            <h3>04. Signal Hunter</h3>
-            <p class="code-font">Détection spectrale pour identifier les micros espions et traceurs actifs/passifs.</p>
+            <h3>05. Signal Hunter</h3>
+            <p class="code-font">Détection spectrale pour identifier micros et traceurs.</p>
             <a href="https://amzn.to/4qApggA" target="_blank" class="btn-luxe">Acquérir</a>
         </div>
 
@@ -231,6 +250,25 @@
                     output.style.textShadow = "0 0 8px var(--accent-green)";
                 }
             }, 40);
+        }
+
+        function ghostEncrypt() {
+            const area = document.getElementById('ghost-input');
+            if(area.value) {
+                area.value = btoa(unescape(encodeURIComponent(area.value)));
+                area.style.color = "var(--accent-green)";
+            }
+        }
+
+        function ghostDecrypt() {
+            const area = document.getElementById('ghost-input');
+            try {
+                area.value = decodeURIComponent(escape(atob(area.value)));
+                area.style.color = "var(--text-white)";
+            } catch(e) {
+                area.value = "ERROR: INVALID CODE";
+                area.style.color = "var(--accent-red)";
+            }
         }
     </script>
 </body>
