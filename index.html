@@ -3,127 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIGIPROTON | ARCHITECT</title>
+    <title>VIGIPROTON | HIGH-END SECURITY</title>
     <style>
+        :root {
+            --accent-red: #FF3B30;
+            --accent-green: #34C759;
+            --text-white: #FFFFFF;
+            --text-gray: #8E8E93;
+            --bg-black: #000000;
+        }
+
         body { 
-            background: #000; 
-            color: #00FF41; 
-            font-family: 'Courier New', Courier, monospace; 
+            background: var(--bg-black); 
+            color: var(--text-white); 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
             margin: 0; 
             display: flex; 
             justify-content: center; 
             align-items: center; 
             min-height: 100vh;
-            overflow: hidden;
+            letter-spacing: 0.05em;
         }
 
-        #lock { text-align: center; width: 90%; max-width: 400px; }
-        
-        #vault { 
-            display: none; 
-            width: 100%; 
-            max-width: 500px; 
-            padding: 20px;
-            box-sizing: border-box;
-            text-align: center;
+        #lock, #vault { 
+            width: 90%; 
+            max-width: 450px; 
+            text-align: center; 
+            transition: opacity 0.5s ease;
         }
 
-        h1 { font-size: 1.8rem; letter-spacing: 5px; text-shadow: 0 0 10px #00FF41; margin-bottom: 20px; }
+        #vault { display: none; text-align: left; }
 
-        .status { font-size: 0.7rem; margin-bottom: 10px; animation: blink 1.5s infinite; }
+        h1 { 
+            font-size: 1.2rem; 
+            font-weight: 200; 
+            text-transform: uppercase; 
+            letter-spacing: 0.3em; 
+            margin-bottom: 40px; 
+        }
+
+        .status-line {
+            font-size: 0.65rem;
+            color: var(--accent-red);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
 
         input { 
-            background: #000; 
-            border: 1px solid #00FF41; 
-            color: #00FF41; 
+            background: transparent; 
+            border: none; 
+            border-bottom: 1px solid #333;
+            color: var(--accent-red); 
             padding: 15px; 
             text-align: center; 
-            font-size: 24px; 
+            font-size: 1.5rem; 
             width: 100%; 
             box-sizing: border-box;
             outline: none;
-            box-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
+            font-weight: 100;
+            transition: border-color 0.3s;
         }
+
+        input:focus { border-color: var(--accent-red); }
 
         .card { 
-            border: 1px solid #00FF41; 
-            margin: 25px 0; 
-            padding: 20px; 
-            background: rgba(0, 20, 0, 0.9);
-            text-align: left;
+            margin-bottom: 50px; 
+            border-left: 1px solid #222;
+            padding-left: 20px;
         }
 
-        .card h3 { margin-top: 0; color: #00FF41; text-transform: uppercase; font-size: 1rem; border-bottom: 1px solid #00FF41; padding-bottom: 10px; }
-        .card p { font-size: 0.85rem; line-height: 1.4; }
-
-        .btn-link {
-            display: block;
-            width: 100%;
-            background: #00FF41;
-            color: #000;
-            text-align: center;
-            padding: 14px 0;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 15px;
+        .card h3 { 
+            font-size: 0.9rem; 
+            font-weight: 400; 
+            color: var(--text-white); 
+            margin: 0 0 10px 0;
             text-transform: uppercase;
         }
 
-        @keyframes blink { 50% { opacity: 0; } }
-
-        .scan-line {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 2px;
-            background: rgba(0, 255, 65, 0.2);
-            pointer-events: none;
-            animation: moveScan 4s infinite linear;
+        .card p { 
+            font-size: 0.75rem; 
+            color: var(--text-gray); 
+            line-height: 1.6;
+            margin-bottom: 20px;
         }
-        @keyframes moveScan { from { top: 0; } to { top: 100%; } }
+
+        .btn-luxe {
+            display: inline-block;
+            color: var(--accent-green);
+            text-decoration: none;
+            font-size: 0.7rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: 1px solid var(--accent-green);
+            padding: 10px 25px;
+            transition: all 0.3s;
+        }
+
+        .btn-luxe:hover {
+            background: var(--accent-green);
+            color: #000;
+        }
+
+        .footer-info {
+            font-size: 0.55rem;
+            color: #333;
+            margin-top: 100px;
+            text-transform: uppercase;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
 
-    <div class="scan-line"></div>
-
     <div id="lock">
-        <h1>VIGIPROTON</h1>
-        <div class="status">[ ATTENTE IDENTIFICATION ]</div>
-        <input type="password" id="code" maxlength="4" placeholder="____" autocomplete="off">
+        <div class="status-line">System Restricted</div>
+        <h1>Vigiproton</h1>
+        <input type="password" id="code" maxlength="4" placeholder="••••" autocomplete="off">
     </div>
 
     <div id="vault">
-        <h1>ACCESS GRANTED</h1>
-        <p style="font-size: 0.7rem; color: #00FF41;">SESSION_ID: ARCHITECT_01</p>
+        <div style="color: var(--accent-green); font-size: 0.6rem; margin-bottom: 20px;">[ ACCESS GRANTED ]</div>
+        <h1>Armurerie Privée</h1>
 
         <div class="card">
-            <h3>FARADAY MODULE</h3>
-            <p>Blocage total des ondes. Anonymat physique garanti.</p>
-            <a href="https://amzn.to/4qWT7iP" target="_blank" class="btn-link">DEPLOIER</a>
+            <h3>01. Faraday Shield</h3>
+            <p>Protection électromagnétique de grade militaire. Neutralisation immédiate de tout signal entrant ou sortant.</p>
+            <a href="https://amzn.to/4qWT7iP" target="_blank" class="btn-luxe">Acquérir</a>
         </div>
 
         <div class="card">
-            <h3>FREQUENCY SCANNER</h3>
-            <p>Détection de trackers et caméras. Nettoyage de zone.</p>
-            <a href="https://amzn.to/4qWcLvj" target="_blank" class="btn-link">DEPLOIER</a>
+            <h3>02. Signal Hunter</h3>
+            <p>Analyse spectrale avancée pour la détection de dispositifs d'écoute et de traçage passifs.</p>
+            <a href="https://amzn.to/4qWcLvj" target="_blank" class="btn-luxe">Acquérir</a>
         </div>
 
         <div class="card">
-            <h3>DATA PROTECTION</h3>
-            <p>Sécurité des échanges et blocage d'interceptions.</p>
-            <a href="https://amzn.to/4bD8LLO" target="_blank" class="btn-link">DEPLOIER</a>
+            <h3>03. Data Crypt</h3>
+            <p>Sécurisation physique des transferts de données. Prévention contre l'extraction non autorisée.</p>
+            <a href="https://amzn.to/4bD8LLO" target="_blank" class="btn-luxe">Acquérir</a>
         </div>
 
-        <p style="font-size: 0.6rem; opacity: 0.5;">VIGIPROTON OS v1.0.4 - NO LOGS</p>
+        <div class="footer-info">Vigiproton | High Security Solutions | No Logs Registered</div>
     </div>
 
     <script>
         const input = document.getElementById('code');
         input.addEventListener('input', function() {
             if (this.value === '1111') {
-                document.getElementById('lock').style.display = 'none';
-                document.getElementById('vault').style.display = 'block';
-                document.body.style.overflowY = 'auto';
+                document.getElementById('lock').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('lock').style.display = 'none';
+                    document.getElementById('vault').style.display = 'block';
+                    document.body.style.alignItems = 'flex-start';
+                    document.body.style.paddingTop = '50px';
+                }, 500);
             }
         });
     </script>
