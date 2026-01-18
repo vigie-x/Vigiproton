@@ -2,233 +2,94 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIGIPROTON | HIGH-END SECURITY</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>VIGIPROTON | SYSTEM</title>
+    
+    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="apple-touch-icon" href="icon.png">
+    <link rel="shortcut icon" href="icon.png">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Vigiproton">
+
     <style>
-        :root {
-            --accent-red: #FF3B30;
-            --accent-green: #34C759;
-            --text-white: #FFFFFF;
-            --text-gray: #555555; 
-            --bg-black: #000000;
-        }
-
-        body { 
-            background: var(--bg-black); 
-            color: var(--text-white); 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
-            margin: 0; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            min-height: 100vh;
-            letter-spacing: 0.05em;
-        }
-
-        #lock, #vault { width: 90%; max-width: 450px; text-align: center; }
-        #vault { display: none; text-align: left; }
-
-        h1 { font-size: 1.2rem; font-weight: 200; text-transform: uppercase; letter-spacing: 0.3em; margin-bottom: 40px; }
-        .status-line { font-size: 0.65rem; color: var(--accent-red); text-transform: uppercase; margin-bottom: 10px; }
-
-        input, textarea { 
-            background: transparent; border: none; color: var(--text-white); padding: 15px; 
-            text-align: center; box-sizing: border-box; outline: none; font-weight: 100;
-        }
-
-        input { font-size: 1.5rem !important; width: 100%; letter-spacing: 10px; }
-
-        textarea { 
-            width: 100%; border: 1px solid #1a1a1a; font-family: 'Courier New', monospace; 
-            font-size: 0.8rem; margin-bottom: 15px; text-align: left; resize: none;
-        }
-
-        .red-divider { height: 1px; background: var(--accent-red); width: 100%; margin-bottom: 25px; }
-        .code-font { font-family: 'Courier New', Courier, monospace; letter-spacing: 1px; }
-
-        .instructions-box {
-            border-top: 1px solid #1a1a1a; border-bottom: 1px solid #1a1a1a;
-            padding: 20px 0; margin-top: 20px;
-        }
-        .instructions-box p { font-size: 0.6rem; color: var(--text-gray); margin: 8px 0; text-transform: uppercase; }
-
-        .card { margin-bottom: 50px; border-left: 1px solid #222; padding-left: 20px; }
-        .card h3 { font-size: 0.9rem; font-weight: 400; color: var(--text-white); text-transform: uppercase; margin-bottom: 10px; }
-        .card p { font-size: 0.7rem; color: #888; line-height: 1.6; margin-bottom: 15px; }
-        .tech-specs { font-size: 0.6rem; color: var(--text-gray); margin-bottom: 20px; text-transform: uppercase; border-top: 1px solid #111; padding-top: 10px; }
-
-        .btn-luxe {
-            display: inline-block; color: var(--accent-green); text-decoration: none; font-size: 0.7rem; 
-            font-weight: bold; text-transform: uppercase; border: 1px solid var(--accent-green); 
-            padding: 10px 25px; background: transparent; cursor: pointer; margin-right: 10px; margin-bottom: 10px;
-        }
-
-        .threat-container { border: 1px solid var(--text-white); padding: 15px; margin-top: 20px; }
-        .threat-bar { height: 4px; background: #1a1a1a; width: 100%; position: relative; overflow: hidden; }
-        .threat-fill { height: 100%; background: var(--accent-red); width: 65%; transition: width 1.5s ease-in-out; }
-
-        .footer-info { font-size: 0.55rem; color: #222; margin-top: 50px; text-align: center; }
-
-        .overlay {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: black; z-index: 100; padding: 40px; box-sizing: border-box; overflow-y: auto;
-        }
-        .protocol-content { color: var(--text-white); font-size: 0.75rem; line-height: 1.7; text-align: left; }
-        .protocol-title { color: var(--accent-red); font-size: 0.9rem; margin-bottom: 25px; letter-spacing: 2px; }
-        .protocol-step-title { color: var(--text-white); font-weight: bold; margin-top: 20px; display: block; border-bottom: 1px solid #222; padding-bottom: 5px; margin-bottom: 10px; }
+        :root { --red: #FF3B30; --green: #34C759; --bg: #000000; }
+        body { background: var(--bg); color: white; font-family: sans-serif; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; text-align: center; }
+        #lock, #vault { width: 90%; max-width: 400px; }
+        #vault { display: none; text-align: left; padding: 20px 0; }
+        h1 { font-size: 1.2rem; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 30px; }
+        input { background: transparent; border: none; border-bottom: 1px solid var(--red); color: white; font-size: 2rem; width: 100%; text-align: center; outline: none; margin-bottom: 20px; }
+        .card { border-left: 1px solid #222; padding-left: 15px; margin-bottom: 40px; }
+        .card h3 { font-size: 0.9rem; color: var(--red); text-transform: uppercase; }
+        .card p { font-size: 0.75rem; color: #888; line-height: 1.5; }
+        .btn { display: inline-block; border: 1px solid var(--green); color: var(--green); padding: 10px 20px; text-decoration: none; font-size: 0.7rem; text-transform: uppercase; margin-top: 10px; }
+        textarea { width: 100%; background: #111; border: 1px solid #222; color: white; padding: 10px; box-sizing: border-box; font-family: monospace; resize: none; margin-bottom: 10px; }
     </style>
 </head>
 <body>
 
     <div id="lock">
-        <div class="status-line">System Restricted</div>
+        <p style="color: var(--red); font-size: 0.6rem; letter-spacing: 2px;">ENCRYPTED ACCESS ONLY</p>
         <h1>Vigiproton</h1>
-        <input type="password" id="code" maxlength="4" placeholder="••••" inputmode="numeric" autocomplete="off">
-        <div class="red-divider"></div>
-        <div class="instructions-box">
-            <p class="code-font">ANDROID : MENU ⋮ > AJOUTER À L'ÉCRAN D'ACCUEIL</p>
-            <p class="code-font">APPLE : ICÔNE ↑ > SUR L'ÉCRAN D'ACCUEIL</p>
-        </div>
+        <input type="password" id="code" maxlength="4" placeholder="••••" inputmode="numeric">
+        <p style="color: #444; font-size: 0.6rem;">INSTALL : MENU > ADD TO HOME SCREEN</p>
     </div>
 
     <div id="vault">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
-            <div style="color: var(--accent-red); font-size: 0.6rem; letter-spacing: 2px;">[ ACCESS GRANTED ]</div>
-            <div onclick="openOverlay('protocol-overlay')" style="color: var(--text-gray); font-size: 0.55rem; cursor: pointer; border: 1px solid #222; padding: 4px 8px;">PROTOCOLE D'ACCÈS</div>
-        </div>
-        <h1>Armurerie Privée</h1>
-
-        <div class="card">
-            <h3>00. Key Chamber</h3>
-            <p class="code-font">Module de génération de clés aléatoires haute entropie.</p>
-            <div id="key-output" class="code-font" style="color: var(--accent-green); font-size: 0.7rem; min-height: 20px; margin-bottom: 20px;">[ SYSTÈME PRÊT ]</div>
-            <button onclick="runGenerator()" class="btn-luxe">Générer</button>
-        </div>
+        <h1 style="color: var(--green);">Armurerie</h1>
 
         <div class="card">
             <h3>01. Ghost Messaging</h3>
-            <textarea id="ghost-input" rows="3" placeholder="Saisir le message..."></textarea>
-            <button onclick="ghostEncrypt()" class="btn-luxe">Chiffrer</button>
-            <button onclick="ghostDecrypt()" class="btn-luxe" style="color: var(--text-gray); border-color: #333;">Déchiffrer</button>
+            <textarea id="ghost" rows="3" placeholder="Message secret..."></textarea>
+            <button onclick="enc()" class="btn">Chiffrer</button>
+            <button onclick="dec()" class="btn" style="border-color:#444; color:#444;">Déchiffrer</button>
         </div>
 
         <div class="card">
-            <h3>02. Multi-Tool Pentest</h3>
-            <p class="code-font">Interception et émulation Sub-1 GHz, RFID, NFC et Bluetooth.</p>
-            <div class="tech-specs">Fréq: 300-928 MHz | RFID: 125kHz | NFC: 13.56MHz</div>
-            <a href="https://amzn.to/4r0vIx8" target="_blank" class="btn-luxe">Acquérir</a>
+            <h3>02. Flipper Zero (Multi-Tool)</h3>
+            <p>Outil d'interception radio, RFID et NFC.</p>
+            <a href="https://amzn.to/4r0vIx8" target="_blank" class="btn">Acquérir</a>
         </div>
 
         <div class="card">
-            <h3>03. Payload Injector</h3>
-            <p class="code-font">Attaque HID. Injection automatique de scripts via clavier émulé.</p>
-            <div class="tech-specs">Interface: USB-A/C | Script: DuckyScript 3.0</div>
-            <a href="https://amzn.to/4pJ0ARq" target="_blank" class="btn-luxe">Acquérir</a>
+            <h3>03. Rubber Ducky (Payload)</h3>
+            <p>Injection de scripts via USB ultra-rapide.</p>
+            <a href="https://amzn.to/4pJ0ARq" target="_blank" class="btn">Acquérir</a>
         </div>
 
         <div class="card">
-            <h3>04. Faraday Shield</h3>
-            <p class="code-font">Isolation totale (GSM, WiFi, GPS, Bluetooth). Blindage militaire.</p>
-            <div class="tech-specs">Atténuation: > 85dB | Grade: Militaire | Anti-EMP</div>
-            <a href="https://amzn.to/4pOGlSL" target="_blank" class="btn-luxe">Acquérir</a>
+            <h3>04. Sac Faraday (Isolation)</h3>
+            <p>Isolation totale contre l'espionnage de signaux.</p>
+            <a href="https://amzn.to/4pOGlSL" target="_blank" class="btn">Acquérir</a>
         </div>
 
         <div class="card">
             <h3>05. Signal Hunter</h3>
-            <p class="code-font">Détection de caméras espionnes, micros et traceurs GPS actifs.</p>
-            <div class="tech-specs">Gamme: 1MHz - 6.5GHz | Sensibilité: 5 niveaux</div>
-            <a href="https://amzn.to/4rkoCnp" target="_blank" class="btn-luxe">Acquérir</a>
+            <p>Détecteur de caméras et micros espions.</p>
+            <a href="https://amzn.to/4rkoCnp" target="_blank" class="btn">Acquérir</a>
         </div>
 
-        <div class="card">
-            <h3>06. Intelligence Report</h3>
-            <p class="code-font">Accès direct aux archives et au manifeste de l'Architecte.</p>
-            <button onclick="openOverlay('vision-overlay')" class="btn-luxe">Consulter</button>
+        <div style="font-size: 0.5rem; color: #222; text-align: center; margin-top: 40px;">
+            VIGIPROTON SECURED SYSTEM // VERSION 2.0
         </div>
-
-        <div class="card">
-            <h3>07. Global Threat Level</h3>
-            <div class="threat-container">
-                <p class="code-font" style="font-size: 0.6rem; color: white; margin-bottom: 10px;">MONITORING STATUS: ACTIVE</p>
-                <div class="threat-bar"><div id="threat-fill" class="threat-fill"></div></div>
-                <p class="code-font" style="font-size: 0.5rem; margin-top: 10px; color: var(--text-gray);">ANALYSE DES FLUX : STABLE</p>
-            </div>
-        </div>
-
-        <div class="footer-info code-font">Vigiproton | High Security Solutions</div>
-    </div>
-
-    <div id="protocol-overlay" class="overlay">
-        <div onclick="closeOverlay('protocol-overlay')" style="color: var(--text-gray); font-size: 0.7rem; margin-bottom: 40px; cursor: pointer;">[ FERMER ]</div>
-        <div class="protocol-content code-font">
-            <div class="protocol-title">// VIGIPROTON : PROTOCOLE D'ACCÈS (V2)</div>
-            <span class="protocol-step-title">00. KEY CHAMBER (SÉCURITÉ DES MDP)</span>
-            Avant toute opération, utilise le module 00 pour générer des identifiants de haute sécurité.<br>
-            Appuie sur [ GÉNÉRER ]. Ne réutilise jamais deux fois la même clé.<br>
-            <span class="protocol-step-title">01. GHOST MESSAGING (COMMUNICATIONS)</span>
-            L'usage du canal 01 est obligatoire : Saisis en clair, appuie sur [ CHIFFRER ], transmets le code. Déchiffre à la réception.<br>
-            <span class="protocol-step-title">02. L'ARMURERIE (MATÉRIEL)</span>
-            Modules 02 à 05 : Équipements critiques requis. Acquiers via les liens sécurisés.<br>
-            <span class="protocol-step-title">03. INSTALLATION MOBILE</span>
-            Apple : ↑ > "Sur l'écran d'accueil". Android : ⋮ > "Ajouter à l'écran d'accueil".<br>
-            <span class="protocol-step-title">04. VEILLE ET VISION</span>
-            Module 06 (Ordres) / Module 07 (DEFCON). Si CRITICAL : Silence radio immédiat.<br><br>
-            <div style="border-top: 1px solid #222; padding-top: 20px; margin-top: 20px; color: var(--accent-red);">CODE D'ACCÈS : 0741 | RESTE INVISIBLE.</div>
-        </div>
-    </div>
-
-    <div id="vision-overlay" class="overlay">
-        <div onclick="closeOverlay('vision-overlay')" style="color: var(--text-gray); font-size: 0.7rem; margin-bottom: 40px; cursor: pointer;">[ FERMER ]</div>
-        <h2 class="code-font" style="color: var(--accent-green); font-size: 1rem;">// LA VISION</h2>
-        <p class="code-font" style="font-size: 0.8rem; line-height: 1.8;">
-            L'indépendance numérique n'est plus un choix, c'est une survie. Vigiproton est l'outil de ceux qui refusent d'être des cibles.<br><br>
-            Utilisez l'armurerie pour reprendre le contrôle. Utilisez Ghost Messaging pour rendre vos pensées illisibles.<br><br>
-            Celui qui contrôle son ombre contrôle son destin. L'ordre est établi.
-        </p>
     </div>
 
     <script>
-        const MASTER_CODE = "0741";
-        const codeInput = document.getElementById('code');
-        codeInput.addEventListener('input', function() {
-            if (this.value === MASTER_CODE) {
+        document.getElementById('code').addEventListener('input', function() {
+            if (this.value === "0741") {
                 document.getElementById('lock').style.display = 'none';
                 document.getElementById('vault').style.display = 'block';
-                document.body.style.alignItems = 'flex-start';
-                document.body.style.paddingTop = '50px';
-                startThreatMonitor();
+                window.scrollTo(0,0);
             }
         });
-        function startThreatMonitor() {
-            const fill = document.getElementById('threat-fill');
-            setInterval(() => {
-                let w = Math.floor(Math.random() * (85 - 60 + 1)) + 60;
-                fill.style.width = w + "%";
-            }, 3000);
+        function enc() {
+            const a = document.getElementById('ghost');
+            if(a.value) a.value = btoa(unescape(encodeURIComponent(a.value)));
         }
-        function runGenerator() {
-            const output = document.getElementById('key-output');
-            const charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            let count = 0;
-            const stream = setInterval(() => {
-                let text = "";
-                for(let i=0; i<24; i++) text += charset.charAt(Math.floor(Math.random() * charset.length));
-                output.innerText = text;
-                count++;
-                if(count > 12) clearInterval(stream);
-            }, 40);
+        function dec() {
+            const a = document.getElementById('ghost');
+            try { a.value = decodeURIComponent(escape(atob(a.value))); } catch(e) { a.value = "ERROR"; }
         }
-        function ghostEncrypt() {
-            const area = document.getElementById('ghost-input');
-            if(area.value) { area.value = btoa(unescape(encodeURIComponent(area.value))); area.style.color = "var(--accent-green)"; }
-        }
-        function ghostDecrypt() {
-            const area = document.getElementById('ghost-input');
-            try { area.value = decodeURIComponent(escape(atob(area.value))); area.style.color = "var(--text-white)"; }
-            catch(e) { area.value = "ERROR"; area.style.color = "var(--accent-red)"; }
-        }
-        function openOverlay(id) { document.getElementById(id).style.display = 'block'; }
-        function closeOverlay(id) { document.getElementById(id).style.display = 'none'; }
     </script>
 </body>
 </html>
