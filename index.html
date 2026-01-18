@@ -30,7 +30,7 @@
         }
 
         #lock, #vault { width: 90%; max-width: 450px; text-align: center; }
-        #vault { display: none; text-align: left; }
+        #vault { display: none; text-align: left; padding: 40px 0; }
 
         h1 { font-size: 1.2rem; font-weight: 200; text-transform: uppercase; letter-spacing: 0.3em; margin-bottom: 40px; }
         .status-line { font-size: 0.65rem; color: var(--accent-red); text-transform: uppercase; margin-bottom: 10px; }
@@ -71,8 +71,6 @@
         .threat-bar { height: 4px; background: #1a1a1a; width: 100%; position: relative; overflow: hidden; }
         .threat-fill { height: 100%; background: var(--accent-red); width: 65%; transition: width 1.5s ease-in-out; }
 
-        .footer-info { font-size: 0.55rem; color: #222; margin-top: 50px; text-align: center; }
-
         .overlay {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: black; z-index: 100; padding: 40px; box-sizing: border-box; overflow-y: auto;
@@ -80,6 +78,8 @@
         .protocol-content { color: var(--text-white); font-size: 0.75rem; line-height: 1.7; text-align: left; }
         .protocol-title { color: var(--accent-red); font-size: 0.9rem; margin-bottom: 25px; letter-spacing: 2px; }
         .protocol-step-title { color: var(--text-white); font-weight: bold; margin-top: 20px; display: block; border-bottom: 1px solid #222; padding-bottom: 5px; margin-bottom: 10px; }
+
+        .footer-info { font-size: 0.55rem; color: #222; margin-top: 50px; text-align: center; }
     </style>
 </head>
 <body>
@@ -165,23 +165,29 @@
     <div id="protocol-overlay" class="overlay">
         <div onclick="closeOverlay('protocol-overlay')" style="color: var(--text-gray); font-size: 0.7rem; margin-bottom: 40px; cursor: pointer;">[ FERMER ]</div>
         <div class="protocol-content code-font">
-            <div class="protocol-title">// VIGIPROTON : PROTOCOLE D'ACCÈS</div>
-            RESTE INVISIBLE. CODE : 0741
+            <div class="protocol-title">// VIGIPROTON : PROTOCOLE D'ACCÈS (V2)</div>
+            <span class="protocol-step-title">00. KEY CHAMBER</span>
+            Génère des identifiants haute sécurité. Ne réutilise jamais deux fois la même clé.<br>
+            <span class="protocol-step-title">01. GHOST MESSAGING</span>
+            Chiffre tes communications avant envoi. Déchiffre à la réception.<br>
+            <span class="protocol-step-title">02. L'ARMURERIE</span>
+            Modules 02 à 05 : Matériel tactique requis.<br>
+            <div style="border-top: 1px solid #222; padding-top: 20px; margin-top: 20px; color: var(--accent-red);">CODE : 0741 | RESTE INVISIBLE.</div>
         </div>
     </div>
 
     <div id="vision-overlay" class="overlay">
         <div onclick="closeOverlay('vision-overlay')" style="color: var(--text-gray); font-size: 0.7rem; margin-bottom: 40px; cursor: pointer;">[ FERMER ]</div>
-        <div class="protocol-content code-font">
-            <div class="protocol-title">// LA VISION</div>
-            L'indépendance numérique est la survie.
-        </div>
+        <h2 class="code-font" style="color: var(--accent-green); font-size: 1rem;">// LA VISION</h2>
+        <p class="code-font" style="font-size: 0.8rem; line-height: 1.8;">
+            L'indépendance numérique n'est plus un choix, c'est une survie. Vigiproton est l'outil de ceux qui refusent d'être des cibles.<br><br>
+            Celui qui contrôle son ombre contrôle son destin.
+        </p>
     </div>
 
     <script>
         const MASTER_CODE = "0741";
         const codeInput = document.getElementById('code');
-        
         codeInput.addEventListener('input', function() {
             if (this.value === MASTER_CODE) {
                 document.getElementById('lock').style.display = 'none';
@@ -191,7 +197,6 @@
                 startThreatMonitor();
             }
         });
-
         function startThreatMonitor() {
             const fill = document.getElementById('threat-fill');
             setInterval(() => {
@@ -199,7 +204,6 @@
                 if(fill) fill.style.width = w + "%";
             }, 3000);
         }
-
         function runGenerator() {
             const output = document.getElementById('key-output');
             const charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -212,18 +216,15 @@
                 if(count > 12) clearInterval(stream);
             }, 40);
         }
-
         function ghostEncrypt() {
             const area = document.getElementById('ghost-input');
             if(area.value) { area.value = btoa(unescape(encodeURIComponent(area.value))); area.style.color = "var(--accent-green)"; }
         }
-
         function ghostDecrypt() {
             const area = document.getElementById('ghost-input');
             try { area.value = decodeURIComponent(escape(atob(area.value))); area.style.color = "var(--text-white)"; }
             catch(e) { area.value = "ERROR"; }
         }
-
         function openOverlay(id) { document.getElementById(id).style.display = 'block'; }
         function closeOverlay(id) { document.getElementById(id).style.display = 'none'; }
     </script>
