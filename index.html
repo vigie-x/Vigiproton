@@ -48,7 +48,6 @@
             margin-bottom: 10px;
         }
 
-        /* INPUT CODE EN BLANC */
         input { 
             background: transparent; 
             border: none; 
@@ -63,7 +62,6 @@
             letter-spacing: 10px;
         }
 
-        /* BARRE ROUGE */
         .red-divider {
             height: 1px;
             background: var(--accent-red);
@@ -71,7 +69,12 @@
             margin-bottom: 25px;
         }
 
-        /* SECTION INSTRUCTIONS GRISES AVEC POLICE CODE */
+        /* POLICE TYPE CODE POUR LES INSTRUCTIONS ET DESCRIPTIONS */
+        .code-font {
+            font-family: 'Courier New', Courier, monospace;
+            letter-spacing: 1px;
+        }
+
         .instructions-box {
             border-top: 1px solid #1a1a1a;
             border-bottom: 1px solid #1a1a1a;
@@ -80,11 +83,9 @@
         }
 
         .instructions-box p {
-            font-family: 'Courier New', Courier, monospace; /* Police de la photo */
             font-size: 0.65rem;
             color: var(--text-gray);
             margin: 8px 0;
-            letter-spacing: 1px;
         }
 
         .card { 
@@ -98,6 +99,14 @@
             font-weight: 400; 
             color: var(--text-white); 
             text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .card p { 
+            font-size: 0.75rem; 
+            color: var(--text-white); 
+            line-height: 1.6;
+            margin-bottom: 20px;
         }
 
         .btn-luxe {
@@ -109,7 +118,6 @@
             text-transform: uppercase;
             border: 1px solid var(--accent-green);
             padding: 10px 25px;
-            margin-top: 15px;
         }
 
         .footer-info {
@@ -130,8 +138,8 @@
         <div class="red-divider"></div>
 
         <div class="instructions-box">
-            <p>ANDROID : MENU ⋮ > AJOUTER À L'ÉCRAN D'ACCUEIL</p>
-            <p>APPLE : ICÔNE ↑ > SUR L'ÉCRAN D'ACCUEIL</p>
+            <p class="code-font">ANDROID : MENU ⋮ > AJOUTER À L'ÉCRAN D'ACCUEIL</p>
+            <p class="code-font">APPLE : ICÔNE ↑ > SUR L'ÉCRAN D'ACCUEIL</p>
         </div>
     </div>
 
@@ -141,23 +149,23 @@
 
         <div class="card">
             <h3>01. Faraday Shield</h3>
-            <p>Protection électromagnétique de grade militaire.</p>
+            <p class="code-font">Protection électromagnétique de grade militaire. Neutralisation de tout signal entrant ou sortant.</p>
             <a href="https://amzn.to/4qWT7iP" target="_blank" class="btn-luxe">Acquérir</a>
         </div>
 
         <div class="card">
             <h3>02. Signal Hunter</h3>
-            <p>Analyse spectrale avancée.</p>
+            <p class="code-font">Analyse spectrale avancée pour la détection de dispositifs d'écoute et de traçage passifs.</p>
             <a href="https://amzn.to/4qWcLvj" target="_blank" class="btn-luxe">Acquérir</a>
         </div>
 
         <div class="card">
             <h3>03. Data Crypt</h3>
-            <p>Sécurisation physique des transferts.</p>
+            <p class="code-font">Sécurisation physique des transferts de données. Prévention contre l'extraction non autorisée.</p>
             <a href="https://amzn.to/4bD8LLO" target="_blank" class="btn-luxe">Acquérir</a>
         </div>
 
-        <div class="footer-info">Vigiproton | High Security Solutions</div>
+        <div class="footer-info code-font">Vigiproton | High Security Solutions</div>
     </div>
 
     <script>
@@ -168,6 +176,7 @@
                 document.getElementById('vault').style.display = 'block';
                 document.body.style.alignItems = 'flex-start';
                 document.body.style.paddingTop = '50px';
+                window.scrollTo(0,0);
             }
         });
     </script>
