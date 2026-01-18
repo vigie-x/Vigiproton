@@ -9,7 +9,7 @@
             --accent-red: #FF3B30;
             --accent-green: #34C759;
             --text-white: #FFFFFF;
-            --text-gray: #8E8E93;
+            --text-gray: #444444; /* Gris plus sombre pour les instructions */
             --bg-black: #000000;
         }
 
@@ -29,7 +29,6 @@
             width: 90%; 
             max-width: 450px; 
             text-align: center; 
-            transition: opacity 0.5s ease;
         }
 
         #vault { display: none; text-align: left; }
@@ -49,22 +48,44 @@
             margin-bottom: 10px;
         }
 
+        /* INPUT CODE EN VERT */
         input { 
             background: transparent; 
             border: none; 
-            border-bottom: 1px solid #333;
-            color: var(--accent-red); 
+            color: var(--accent-green); 
             padding: 15px; 
             text-align: center; 
             font-size: 1.5rem; 
             width: 100%; 
             box-sizing: border-box;
             outline: none;
-            font-weight: 100;
-            transition: border-color 0.3s;
+            font-weight: bold;
+            letter-spacing: 10px;
         }
 
-        input:focus { border-color: var(--accent-red); }
+        /* BARRE ROUGE SOUS LE CODE */
+        .red-divider {
+            height: 1px;
+            background: var(--accent-red);
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        /* SECTION INSTRUCTIONS GRISES */
+        .instructions-box {
+            border-top: 1px solid #222;
+            border-bottom: 1px solid #222;
+            padding: 15px 0;
+            margin-top: 20px;
+        }
+
+        .instructions-box p {
+            font-size: 0.6rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            margin: 5px 0;
+            letter-spacing: 1px;
+        }
 
         .card { 
             margin-bottom: 50px; 
@@ -76,15 +97,7 @@
             font-size: 0.9rem; 
             font-weight: 400; 
             color: var(--text-white); 
-            margin: 0 0 10px 0;
             text-transform: uppercase;
-        }
-
-        .card p { 
-            font-size: 0.75rem; 
-            color: var(--text-gray); 
-            line-height: 1.6;
-            margin-bottom: 20px;
         }
 
         .btn-luxe {
@@ -96,19 +109,13 @@
             text-transform: uppercase;
             border: 1px solid var(--accent-green);
             padding: 10px 25px;
-            transition: all 0.3s;
-        }
-
-        .btn-luxe:hover {
-            background: var(--accent-green);
-            color: #000;
+            margin-top: 15px;
         }
 
         .footer-info {
             font-size: 0.55rem;
             color: #333;
-            margin-top: 100px;
-            text-transform: uppercase;
+            margin-top: 50px;
             text-align: center;
         }
     </style>
@@ -118,45 +125,49 @@
     <div id="lock">
         <div class="status-line">System Restricted</div>
         <h1>Vigiproton</h1>
+        
         <input type="password" id="code" maxlength="4" placeholder="••••" autocomplete="off">
+        <div class="red-divider"></div>
+
+        <div class="instructions-box">
+            <p>Android : Menu ⋮ > Ajouter à l'écran d'accueil</p>
+            <p>Apple : Icône ↑ > Sur l'écran d'accueil</p>
+        </div>
     </div>
 
     <div id="vault">
-        <div style="color: var(--accent-green); font-size: 0.6rem; margin-bottom: 20px;">[ ACCESS GRANTED ]</div>
+        <div style="color: var(--accent-red); font-size: 0.6rem; margin-bottom: 20px;">[ ACCESS GRANTED ]</div>
         <h1>Armurerie Privée</h1>
 
         <div class="card">
             <h3>01. Faraday Shield</h3>
-            <p>Protection électromagnétique de grade militaire. Neutralisation immédiate de tout signal entrant ou sortant.</p>
+            <p>Protection électromagnétique de grade militaire.</p>
             <a href="https://amzn.to/4qWT7iP" target="_blank" class="btn-luxe">Acquérir</a>
         </div>
 
         <div class="card">
             <h3>02. Signal Hunter</h3>
-            <p>Analyse spectrale avancée pour la détection de dispositifs d'écoute et de traçage passifs.</p>
+            <p>Analyse spectrale avancée.</p>
             <a href="https://amzn.to/4qWcLvj" target="_blank" class="btn-luxe">Acquérir</a>
         </div>
 
         <div class="card">
             <h3>03. Data Crypt</h3>
-            <p>Sécurisation physique des transferts de données. Prévention contre l'extraction non autorisée.</p>
+            <p>Sécurisation physique des transferts.</p>
             <a href="https://amzn.to/4bD8LLO" target="_blank" class="btn-luxe">Acquérir</a>
         </div>
 
-        <div class="footer-info">Vigiproton | High Security Solutions | No Logs Registered</div>
+        <div class="footer-info">Vigiproton | High Security Solutions</div>
     </div>
 
     <script>
         const input = document.getElementById('code');
         input.addEventListener('input', function() {
             if (this.value === '1111') {
-                document.getElementById('lock').style.opacity = '0';
-                setTimeout(() => {
-                    document.getElementById('lock').style.display = 'none';
-                    document.getElementById('vault').style.display = 'block';
-                    document.body.style.alignItems = 'flex-start';
-                    document.body.style.paddingTop = '50px';
-                }, 500);
+                document.getElementById('lock').style.display = 'none';
+                document.getElementById('vault').style.display = 'block';
+                document.body.style.alignItems = 'flex-start';
+                document.body.style.paddingTop = '50px';
             }
         });
     </script>
