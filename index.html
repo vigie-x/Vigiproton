@@ -25,139 +25,57 @@
             letter-spacing: 0.05em;
         }
 
-        #lock, #vault { 
-            width: 90%; 
-            max-width: 450px; 
-            text-align: center; 
-        }
-
+        #lock, #vault { width: 90%; max-width: 450px; text-align: center; }
         #vault { display: none; text-align: left; }
 
-        h1 { 
-            font-size: 1.2rem; 
-            font-weight: 200; 
-            text-transform: uppercase; 
-            letter-spacing: 0.3em; 
-            margin-bottom: 40px; 
-        }
-
-        .status-line {
-            font-size: 0.65rem;
-            color: var(--accent-red);
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
+        h1 { font-size: 1.2rem; font-weight: 200; text-transform: uppercase; letter-spacing: 0.3em; margin-bottom: 40px; }
+        .status-line { font-size: 0.65rem; color: var(--accent-red); text-transform: uppercase; margin-bottom: 10px; }
 
         input, textarea { 
-            background: transparent; 
-            border: none; 
-            color: var(--text-white); 
-            padding: 15px; 
-            text-align: center; 
-            box-sizing: border-box;
-            outline: none;
-            font-weight: 100;
+            background: transparent; border: none; color: var(--text-white); padding: 15px; 
+            text-align: center; box-sizing: border-box; outline: none; font-weight: 100;
         }
 
         input { font-size: 1.5rem !important; width: 100%; letter-spacing: 10px; }
 
         textarea { 
-            width: 100%; 
-            border: 1px solid #1a1a1a; 
-            font-family: 'Courier New', monospace; 
-            font-size: 0.8rem; 
-            margin-bottom: 15px;
-            text-align: left;
-            resize: none;
+            width: 100%; border: 1px solid #1a1a1a; font-family: 'Courier New', monospace; 
+            font-size: 0.8rem; margin-bottom: 15px; text-align: left; resize: none;
         }
 
-        .red-divider {
-            height: 1px;
-            background: var(--accent-red);
-            width: 100%;
-            margin-bottom: 25px;
-        }
+        .red-divider { height: 1px; background: var(--accent-red); width: 100%; margin-bottom: 25px; }
+        .code-font { font-family: 'Courier New', Courier, monospace; letter-spacing: 1px; }
 
-        .code-font {
-            font-family: 'Courier New', Courier, monospace;
-            letter-spacing: 1px;
-        }
-
-        .instructions-box {
-            border-top: 1px solid #1a1a1a;
-            border-bottom: 1px solid #1a1a1a;
-            padding: 20px 0;
-            margin-top: 10px;
-        }
-
-        .instructions-box p {
-            font-size: 0.65rem;
-            color: var(--text-gray);
-            margin: 8px 0;
-        }
-
-        .card { 
-            margin-bottom: 50px; 
-            border-left: 1px solid #222;
-            padding-left: 20px;
-        }
-
-        .card h3 { 
-            font-size: 0.9rem; 
-            font-weight: 400; 
-            color: var(--text-white); 
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
-
-        .card p { 
-            font-size: 0.75rem; 
-            color: var(--text-white); 
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
+        .card { margin-bottom: 50px; border-left: 1px solid #222; padding-left: 20px; }
+        .card h3 { font-size: 0.9rem; font-weight: 400; color: var(--text-white); text-transform: uppercase; margin-bottom: 10px; }
+        .card p { font-size: 0.75rem; color: var(--text-white); line-height: 1.6; margin-bottom: 20px; }
 
         .btn-luxe {
-            display: inline-block;
-            color: var(--accent-green);
-            text-decoration: none;
-            font-size: 0.7rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            border: 1px solid var(--accent-green);
-            padding: 10px 25px;
-            background: transparent;
-            cursor: pointer;
-            margin-right: 10px;
-            margin-bottom: 10px;
+            display: inline-block; color: var(--accent-green); text-decoration: none; font-size: 0.7rem; 
+            font-weight: bold; text-transform: uppercase; border: 1px solid var(--accent-green); 
+            padding: 10px 25px; background: transparent; cursor: pointer; margin-right: 10px; margin-bottom: 10px;
         }
 
-        .footer-info {
-            font-size: 0.55rem;
-            color: #222;
-            margin-top: 50px;
-            text-align: center;
-        }
+        /* 07. THREAT BAR */
+        .threat-bar { height: 4px; background: #1a1a1a; width: 100%; margin-top: 10px; position: relative; overflow: hidden; }
+        .threat-fill { height: 100%; background: var(--accent-red); width: 65%; transition: width 1.5s ease-in-out; }
 
-        @keyframes shake {
-            0% { transform: translateX(0); }
-            25% { transform: translateX(-8px); }
-            50% { transform: translateX(8px); }
-            100% { transform: translateX(0); }
+        .footer-info { font-size: 0.55rem; color: #222; margin-top: 50px; text-align: center; }
+
+        /* 06. VISION OVERLAY */
+        #vision-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: black; z-index: 100; padding: 40px; box-sizing: border-box; overflow-y: auto;
         }
     </style>
 </head>
 <body>
 
     <div id="lock">
-        <div class="status-line" id="status-display">System Restricted</div>
+        <div class="status-line">System Restricted</div>
         <h1>Vigiproton</h1>
-        <input type="password" id="code" maxlength="4" placeholder="••••" inputmode="numeric" autocomplete="off">
-        <div class="red-divider" id="divider"></div>
-        <div class="instructions-box">
-            <p class="code-font">ANDROID : MENU ⋮ > AJOUTER À L'ÉCRAN D'ACCUEIL</p>
-            <p class="code-font">APPLE : ICÔNE ↑ > SUR L'ÉCRAN D'ACCUEIL</p>
-        </div>
+        <input type="password" id="code" maxlength="4" placeholder="••••" inputmode="numeric">
+        <div class="red-divider"></div>
     </div>
 
     <div id="vault">
@@ -166,75 +84,72 @@
 
         <div class="card">
             <h3>00. Key Chamber</h3>
-            <p class="code-font">Génération d'identifiants de cryptage. Sécurisation locale.</p>
             <div id="key-output" class="code-font" style="color: var(--accent-green); font-size: 0.7rem; min-height: 20px; margin-bottom: 20px;">[ SYSTÈME PRÊT ]</div>
             <button onclick="runGenerator()" class="btn-luxe">Générer</button>
         </div>
 
         <div class="card">
             <h3>01. Ghost Messaging</h3>
-            <p class="code-font">Cryptage asymétrique de messages. Ne laisse aucune trace sur le réseau.</p>
             <textarea id="ghost-input" rows="3" placeholder="Saisir le message..."></textarea>
             <button onclick="ghostEncrypt()" class="btn-luxe">Chiffrer</button>
             <button onclick="ghostDecrypt()" class="btn-luxe" style="color: var(--text-gray); border-color: #333;">Déchiffrer</button>
         </div>
 
+        <div class="card"><h3>02. Multi-Tool Pentest</h3><a href="https://amzn.to/3NmS5hL" target="_blank" class="btn-luxe">Acquérir</a></div>
+        <div class="card"><h3>03. Payload Injector</h3><a href="https://amzn.to/4jNKF3c" target="_blank" class="btn-luxe">Acquérir</a></div>
+        <div class="card"><h3>04. Faraday Shield</h3><a href="https://amzn.to/45L6L0k" target="_blank" class="btn-luxe">Acquérir</a></div>
+
+        <div class="card"><h3>05. Signal Hunter</h3><a href="https://amzn.to/4qApggA" target="_blank" class="btn-luxe">Acquérir</a></div>
+
         <div class="card">
-            <h3>02. Multi-Tool Pentest</h3>
-            <p class="code-font">Outil autonome pour l'analyse des protocoles radio et RFID.</p>
-            <a href="https://amzn.to/3NmS5hL" target="_blank" class="btn-luxe">Acquérir</a>
+            <h3>06. Intelligence Report</h3>
+            <p class="code-font">Transmission cryptée : Manifeste de l'Architecte.</p>
+            <button onclick="openVision()" class="btn-luxe">Consulter</button>
         </div>
 
         <div class="card">
-            <h3>03. Payload Injector</h3>
-            <p class="code-font">Injection HID ultra-rapide pour l'automatisation USB.</p>
-            <a href="https://amzn.to/4jNKF3c" target="_blank" class="btn-luxe">Acquérir</a>
-        </div>
-
-        <div class="card">
-            <h3>04. Faraday Shield</h3>
-            <p class="code-font">Protection électromagnétique. Neutralisation de tout signal.</p>
-            <a href="https://amzn.to/45L6L0k" target="_blank" class="btn-luxe">Acquérir</a>
-        </div>
-
-        <div class="card">
-            <h3>05. Signal Hunter</h3>
-            <p class="code-font">Détection spectrale pour identifier micros et traceurs.</p>
-            <a href="https://amzn.to/4qApggA" target="_blank" class="btn-luxe">Acquérir</a>
+            <h3>07. Global Threat Level</h3>
+            <p class="code-font">Status: <span id="threat-status" style="color: var(--accent-red);">[ DEFCON 3 ]</span></p>
+            <div class="threat-bar"><div id="threat-fill" class="threat-fill"></div></div>
         </div>
 
         <div class="footer-info code-font">Vigiproton | High Security Solutions</div>
     </div>
 
+    <div id="vision-overlay">
+        <div onclick="closeVision()" style="color: var(--text-gray); font-size: 0.7rem; margin-bottom: 40px; cursor: pointer;">[ FERMER ]</div>
+        <h2 class="code-font" style="font-size: 1rem; color: var(--accent-green);">// LA VISION</h2>
+        <p class="code-font" style="font-size: 0.8rem; line-height: 1.8;">
+            L'indépendance numérique n'est plus un choix, c'est une survie.<br><br>
+            Vigiproton est l'outil de ceux qui refusent d'être des cibles.<br><br>
+            Utilisez l'armurerie. Cryptez vos messages. Protégez votre matériel. <br><br>
+            L'ordre est établi.
+        </p>
+    </div>
+
     <script>
-        const codeInput = document.getElementById('code');
-        const divider = document.getElementById('divider');
-        const status = document.getElementById('status-display');
         const MASTER_CODE = "0741";
+        const codeInput = document.getElementById('code');
 
         codeInput.addEventListener('input', function() {
-            if (this.value.length === 4) {
-                if (this.value === MASTER_CODE) {
-                    document.getElementById('lock').style.display = 'none';
-                    document.getElementById('vault').style.display = 'block';
-                    document.body.style.alignItems = 'flex-start';
-                    document.body.style.paddingTop = '50px';
-                    window.scrollTo(0,0);
-                } else {
-                    divider.style.background = '#FFFFFF';
-                    status.innerText = "ACCESS DENIED";
-                    status.style.color = "#FFFFFF";
-                    codeInput.style.animation = 'shake 0.3s ease-in-out';
-                    setTimeout(() => {
-                        this.value = '';
-                        divider.style.background = 'var(--accent-red)';
-                        status.innerText = "SYSTEM RESTRICTED";
-                        status.style.color = "var(--accent-red)";
-                        codeInput.style.animation = '';
-                    }, 400);
-                }
+            if (this.value === MASTER_CODE) {
+                document.getElementById('lock').style.display = 'none';
+                document.getElementById('vault').style.display = 'block';
+                document.body.style.alignItems = 'flex-start';
+                document.body.style.paddingTop = '50px';
+                startThreatMonitor();
             }
         });
+
+        function startThreatMonitor() {
+            const fill = document.getElementById('threat-fill');
+            const status = document.getElementById('threat-status');
+            setInterval(() => {
+                let w = Math.floor(Math.random() * (85 - 60 + 1)) + 60;
+                fill.style.width = w + "%";
+                status.innerText = w > 80 ? "[ DEFCON 2 - CRITICAL ]" : "[ DEFCON 3 - ELEVATED ]";
+            }, 3000);
+        }
 
         function runGenerator() {
             const output = document.getElementById('key-output');
@@ -245,31 +160,23 @@
                 for(let i=0; i<24; i++) text += charset.charAt(Math.floor(Math.random() * charset.length));
                 output.innerText = text;
                 count++;
-                if(count > 12) {
-                    clearInterval(stream);
-                    output.style.textShadow = "0 0 8px var(--accent-green)";
-                }
+                if(count > 12) clearInterval(stream);
             }, 40);
         }
 
         function ghostEncrypt() {
             const area = document.getElementById('ghost-input');
-            if(area.value) {
-                area.value = btoa(unescape(encodeURIComponent(area.value)));
-                area.style.color = "var(--accent-green)";
-            }
+            if(area.value) { area.value = btoa(unescape(encodeURIComponent(area.value))); area.style.color = "var(--accent-green)"; }
         }
 
         function ghostDecrypt() {
             const area = document.getElementById('ghost-input');
-            try {
-                area.value = decodeURIComponent(escape(atob(area.value)));
-                area.style.color = "var(--text-white)";
-            } catch(e) {
-                area.value = "ERROR: INVALID CODE";
-                area.style.color = "var(--accent-red)";
-            }
+            try { area.value = decodeURIComponent(escape(atob(area.value))); area.style.color = "var(--text-white)"; }
+            catch(e) { area.value = "ERROR"; area.style.color = "var(--accent-red)"; }
         }
+
+        function openVision() { document.getElementById('vision-overlay').style.display = 'block'; }
+        function closeVision() { document.getElementById('vision-overlay').style.display = 'none'; }
     </script>
 </body>
 </html>
