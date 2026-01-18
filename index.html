@@ -3,12 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIGIPROTON | OS</title>
+    <title>VIGIPROTON | IDE</title>
     <style>
+        :root {
+            --bg: #0d0d0d;
+            --keyword: #ff7b72; /* Rouge */
+            --function: #79c0ff; /* Bleu */
+            --string: #a5d6ff; /* Blanc bleuté */
+            --variable: #ffa657; /* Jaune */
+            --comment: #8b949e; /* Gris */
+            --success: #7ee787; /* Vert */
+        }
+
         body { 
-            background: #000; 
-            color: #0f0; 
-            font-family: 'Courier New', monospace; 
+            background: var(--bg); 
+            color: #c9d1d9; 
+            font-family: 'Consolas', 'Monaco', monospace; 
             margin: 0; 
             display: flex; 
             justify-content: center; 
@@ -16,112 +26,95 @@
             min-height: 100vh;
         }
 
-        #lock { text-align: center; width: 90%; }
-        
-        #vault { 
-            display: none; 
-            width: 100%; 
-            max-width: 600px; 
-            padding: 20px;
-            box-sizing: border-box;
-        }
+        #lock, #vault { width: 95%; max-width: 650px; padding: 20px; box-sizing: border-box; }
+        #vault { display: none; }
 
-        h1 { font-size: 1.8rem; letter-spacing: 3px; text-shadow: 0 0 10px #0f0; margin-bottom: 20px; }
+        h1 { font-size: 1.4rem; color: var(--variable); border-bottom: 1px solid #30363d; padding-bottom: 10px; }
+
+        .code-line { margin: 10px 0; font-size: 0.9rem; }
+        .keyword { color: var(--keyword); }
+        .function { color: var(--function); }
+        .comment { color: var(--comment); }
+        .success { color: var(--success); }
 
         input { 
-            background: #000; 
-            border: 1px solid #0f0; 
-            color: #0f0; 
+            background: #161b22; 
+            border: 1px solid #30363d; 
+            color: var(--success); 
             padding: 15px; 
-            text-align: center; 
-            font-size: 24px; 
+            font-size: 20px; 
             width: 100%; 
             box-sizing: border-box;
             outline: none;
-            box-shadow: 0 0 5px #0f0;
+            margin-top: 15px;
         }
 
         .card { 
-            border: 1px solid #0f0; 
-            margin: 25px 0; 
+            border: 1px solid #30363d; 
+            margin: 20px 0; 
             padding: 20px; 
-            background: rgba(0, 20, 0, 0.8);
-            text-align: left;
-            position: relative;
+            background: #161b22;
+            border-radius: 6px;
         }
 
-        .card h3 { margin-top: 0; color: #fff; font-size: 1.1rem; text-transform: uppercase; border-bottom: 1px solid #0f0; padding-bottom: 10px; }
-        .card p { font-size: 0.85rem; line-height: 1.4; color: #0f0; }
-
-        .btn-link {
+        .btn-deploy {
             display: block;
             width: 100%;
-            background: #0f0;
-            color: #000;
+            background: transparent;
+            color: var(--function);
             text-align: center;
-            padding: 14px 0;
+            padding: 12px 0;
             text-decoration: none;
             font-weight: bold;
             margin-top: 15px;
+            border: 1px solid var(--function);
             text-transform: uppercase;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
+            transition: 0.3s;
         }
 
-        .status-blink {
-            font-size: 0.7rem;
-            color: #0f0;
-            margin-bottom: 10px;
-            animation: blink 1.2s infinite;
+        .btn-deploy:hover {
+            background: var(--function);
+            color: #000;
         }
 
-        @keyframes blink { 50% { opacity: 0; } }
-
-        /* Style pour le scan visuel */
-        .scan-line {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 2px;
-            background: rgba(0, 255, 0, 0.2);
-            z-index: 1000;
-            pointer-events: none;
-            animation: moveScan 4s infinite linear;
-        }
-        @keyframes moveScan { from { top: 0; } to { top: 100%; } }
+        .blink { animation: flic 1s infinite; }
+        @keyframes flic { 50% { opacity: 0.3; } }
     </style>
 </head>
 <body>
 
-    <div class="scan-line"></div>
-
     <div id="lock">
-        <h1>VIGIPROTON</h1>
-        <div class="status-blink">[ ATTENTE IDENTIFICATION NIVEAU 4 ]</div>
-        <input type="password" id="code" maxlength="4" placeholder="____" autocomplete="off">
+        <div class="code-line"><span class="keyword">import</span> security_module</div>
+        <div class="code-line"><span class="comment">// Verification du niveau d'accès...</span></div>
+        <h1>system.access(<span class="keyword">"ROOT"</span>)</h1>
+        <input type="password" id="code" maxlength="4" placeholder="Enter Credentials..." autocomplete="off">
+        <p class="comment" style="font-size: 0.7rem; margin-top: 10px;">ID: ARCHITECT_OS_01</p>
     </div>
 
     <div id="vault">
-        <h1>ARMURERIE SÉCURISÉE</h1>
-        <p style="font-size: 0.7rem; margin-bottom: 30px;">AUTH: ARCHITECTE | ACCÈS ÉLÉVÉ</p>
+        <div class="code-line"><span class="success">✓ Access Granted.</span> Initializing modules...</div>
+        <h1>Vigiproton_Workspace</h1>
 
         <div class="card">
-            <h3>Module Faraday Pro</h3>
-            <p>Isolation totale des signaux GSM, WiFi et GPS. Indispensable pour l'anonymat physique.</p>
-            <a href="https://amzn.to/4qWT7iP" target="_blank" class="btn-link">DÉPLOYER</a>
+            <div class="code-line"><span class="keyword">class</span> <span class="variable">Faraday_Module</span>:</div>
+            <p class="comment">/* Isolation totale des signaux GSM/WiFi */</p>
+            <a href="https://amzn.to/4qWT7iP" target="_blank" class="btn-deploy">exec.deploy(Faraday)</a>
         </div>
 
         <div class="card">
-            <h3>Scanner de Fréquences</h3>
-            <p>Détection des trackers et caméras espion. Nettoyez votre environnement immédiat.</p>
-            <a href="https://amzn.to/4qWcLvj" target="_blank" class="btn-link">DÉPLOYER</a>
+            <div class="code-line"><span class="keyword">class</span> <span class="variable">Frequency_Scanner</span>:</div>
+            <p class="comment">/* Détection de trackers & caméras espion */</p>
+            <a href="https://amzn.to/4qWcLvj" target="_blank" class="btn-deploy">exec.deploy(Scanner)</a>
         </div>
 
         <div class="card">
-            <h3>Protection Data-Link</h3>
-            <p>Sécurité des échanges physiques et blocage des interceptions de données.</p>
-            <a href="https://amzn.to/4bD8LLO" target="_blank" class="btn-link">DÉPLOYER</a>
+            <div class="code-line"><span class="keyword">class</span> <span class="variable">Data_Protection</span>:</div>
+            <p class="comment">/* Blocage interceptions physiques */</p>
+            <a href="https://amzn.to/4bD8LLO" target="_blank" class="btn-deploy">exec.deploy(DataLink)</a>
         </div>
 
-        <p style="font-size: 0.6rem; opacity: 0.4; text-align: center; margin-top: 40px;">SYSTEM STATUS: ENCRYPTED | NO EXTERNAL LOGS</p>
+        <div class="code-line blink"><span class="success">●</span> <span class="comment">System: Listening for commands...</span></div>
     </div>
 
     <script>
@@ -130,8 +123,6 @@
             if (this.value === '1111') {
                 document.getElementById('lock').style.display = 'none';
                 document.getElementById('vault').style.display = 'block';
-                // Permettre le scroll une fois déverrouillé
-                document.body.style.display = 'block';
                 document.body.style.overflowY = 'auto';
             }
         });
